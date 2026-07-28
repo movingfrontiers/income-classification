@@ -1,0 +1,24 @@
+Assumptions,,,
+Every projected figure in this workbook derives from these cells.,,,
+"Threshold drift, common to all three thresholds",,0.01244,median annual increase over the decade to 2025
+"Growth floor (set equal to the drift, so no economy is downgraded)",,0.01244,
+"Growth cap, 90th percentile of decade medians within each group",,,
+,Low income,0.055948,
+,Lower-middle,0.074681,
+,Upper-middle,0.090712,
+,High income,0.071689,
+Minimum observations required to project (of 10 possible),,8,
+Derivation of the drift: annual change in each official threshold,,,
+Year,LIC / LMIC,LMIC / UMIC,UMIC / HIC
+2016,-0.019512195122,-0.019826517968,-0.019238476954
+2017,-0.009950248756,-0.015170670038,-0.014711892113
+2018,0.030150753769,0.02567394095,0.026545002074
+2019,0.009756097561,0.012515644556,0.012929292929
+2020,0.009661835749,0.012360939431,0.012764260072
+2021,0.038277511962,0.039072039072,0.040173296573
+2022,0.046082949309,0.049353701528,0.048466489966
+2023,0.008810572687,0.011198208287,0.011556518599
+2024,-0.008733624454,-0.004429678848,-0.004998214923
+2025,0.035242290749,0.031145717464,0.031575170434
+median,0.009708966655,0.012438291994,0.012846776501
+median of the three,0.012438291994,,this is the 1.244% used above
