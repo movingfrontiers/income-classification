@@ -50,6 +50,12 @@ floor and the cap together set 58 of the 197 rates. Full detail sits in
 World Bank OGHIST, 1 July 2026, Thresholds and Country Analytical History
 worksheets. WDI GNI per capita, Atlas method, July 2026 vintage.
 
+## Licence
+
+CC BY 4.0. Free to share and adapt with attribution to Philip Schellekens,
+Moving Frontiers. Source data are World Bank OGHIST and WDI, subject to the
+World Bank's own terms of use.
+
 ## Use
 
 Free to use with attribution to Philip Schellekens, Moving Frontiers.
