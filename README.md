@@ -3,8 +3,22 @@
 Underlying data for "The Great Income Inversion", published on
 [Moving Frontiers](https://movingfrontiers.substack.com).
 
-World Bank income classifications and GNI per capita, actual 1987 to 2025,
-projected 2026 to 2050.
+World Bank income classifications and GNI per capita for 218 economies.
+Actual 1987 to 2025, projected 2026 to 2050.
+
+## Quick start
+
+```python
+import pandas as pd
+
+url = "https://raw.githubusercontent.com/movingfrontiers/income-classification/main/csv/panel-long.csv"
+df = pd.read_csv(url)
+```
+
+```r
+url <- "https://raw.githubusercontent.com/movingfrontiers/income-classification/main/csv/panel-long.csv"
+df <- read.csv(url)
+```
 
 ## Files
 
@@ -25,8 +39,22 @@ The `csv/` folder holds the same content as flat text.
 | `coverage.csv` | Economy counts at each step, and where the others drop out |
 | `readme.txt` | Full methodology note from the workbook |
 
-Start with `panel-long.csv` for analysis. It carries a `series` column marking
-actual against projected, which replaces the yellow shading used in the workbook.
+Start with `panel-long.csv`.
+
+## Columns in panel-long.csv
+
+| Column | Contents |
+|---|---|
+| `economy` | Economy name as published by the World Bank |
+| `code` | ISO three-letter code |
+| `year` | 1987 to 2050 |
+| `gni_per_capita_atlas_usd` | GNI per capita, Atlas method, current US$ |
+| `income_group` | L, LM, UM or H |
+| `series` | `actual` through 2025, `projected` from 2026 |
+| `class_2025` | The economy's group in 2025, constant across its rows |
+| `status` | Whether the growth rate was raised by the floor, cut by the cap, or frozen |
+
+The `series` column replaces the yellow shading used in the workbook.
 
 ## Coverage
 
@@ -42,20 +70,23 @@ median of its ten annual rates over the decade to 2025. A floor of 1.244 percent
 equal to the threshold drift means no economy is downgraded anywhere in the
 projection. A cap at the 90th percentile of decade-median growth within each
 income group means no economy outgrows the top decile of its own group. The
-floor and the cap together set 58 of the 197 rates. Full detail sits in
-`readme.txt` and on the Assumptions sheet.
+floor and the cap together set 58 of the 197 rates.
+
+These are projections under stated assumptions rather than forecasts. Every
+assumption sits in a labelled cell on the Assumptions sheet. Change one and the
+workbook recomputes. Full detail is in `readme.txt`.
 
 ## Sources
 
 World Bank OGHIST, 1 July 2026, Thresholds and Country Analytical History
 worksheets. WDI GNI per capita, Atlas method, July 2026 vintage.
 
+## Citation
+
+Schellekens, Philip (2026). World Bank income classification projections to 2050.
+Moving Frontiers. https://movingfrontiers.substack.com
+
 ## Licence
 
-CC BY 4.0. Free to share and adapt with attribution to Philip Schellekens,
-Moving Frontiers. Source data are World Bank OGHIST and WDI, subject to the
-World Bank's own terms of use.
-
-## Use
-
-Free to use with attribution to Philip Schellekens, Moving Frontiers.
+CC BY 4.0, see `LICENSE`. Free to share and adapt with attribution. Source data
+are World Bank OGHIST and WDI, subject to the World Bank's own terms of use.
