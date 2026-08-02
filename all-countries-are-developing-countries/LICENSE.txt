@@ -1,0 +1,21 @@
+Creative Commons Attribution 4.0 International
+
+Copyright (c) 2026 Philip Schellekens
+
+The contents of this folder, being the four csv files behind the post
+"All Countries Are Developing Countries", are licensed under a Creative
+Commons Attribution 4.0 International Licence.
+
+https://creativecommons.org/licenses/by/4.0/
+
+You are free to share and adapt the material for any purpose, including
+commercially, provided you give appropriate credit.
+
+Suggested citation:
+
+Schellekens, Philip (2026). All countries are developing countries: data.
+Moving Frontiers. https://movingfrontiers.substack.com
+
+Source data are the World Bank OGHIST and World Development Indicators and
+the Media Cloud story index, each subject to its own terms of use. The
+analysis, the queries and the derived tables are the author's own.
