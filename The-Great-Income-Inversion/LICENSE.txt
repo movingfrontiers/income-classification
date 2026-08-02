@@ -1,0 +1,22 @@
+Creative Commons Attribution 4.0 International
+
+Copyright (c) 2026 Philip Schellekens
+
+The contents of this repository, being the workbook
+income-classification-2050.xlsx and everything in the csv/ folder,
+are licensed under a Creative Commons Attribution 4.0 International Licence.
+
+https://creativecommons.org/licenses/by/4.0/
+
+You are free to share and adapt the material for any purpose, including
+commercially, provided you give appropriate credit.
+
+Suggested citation:
+
+Schellekens, Philip (2026). World Bank income classification projections
+to 2050. Moving Frontiers. https://movingfrontiers.substack.com
+
+Source data are World Bank OGHIST and World Development Indicators, and the
+United Nations World Population Prospects 2024, each subject to its own
+terms of use. The projections, the assumptions behind them and the derived
+tables are the author's own.
