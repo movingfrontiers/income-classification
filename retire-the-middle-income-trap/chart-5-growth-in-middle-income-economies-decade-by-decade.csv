@@ -1,0 +1,433 @@
+record_type,series,decade,first_rate_year,last_rate_year,economy,code,class_2025,class_at_decade_start,middle_income_at_decade_start,annual_rates_used,decade_median_growth_pct,population_mn,population_year,in_balanced_sample,n_economies,weighted_median_economy,plotted
+chart_series,Unweighted median,1988-95,1988,1995,,,,,,,4.038,3497.872,1990,True,82,,True
+chart_series,Population-weighted median,1988-95,1988,1995,,,,,,,7.045,3497.872,1990,True,82,China,True
+chart_series,Unweighted median,1996-2005,1996,2005,,,,,,,4.388,4442.723,2005,True,82,,True
+chart_series,Population-weighted median,1996-2005,1996,2005,,,,,,,5.436,4442.723,2005,True,82,Algeria,True
+chart_series,Unweighted median,2006-15,2006,2015,,,,,,,5.945,5022.548,2015,True,82,,True
+chart_series,Population-weighted median,2006-15,2006,2015,,,,,,,9.285,5022.548,2015,True,82,Bangladesh,True
+chart_series,Unweighted median,2016-25,2016,2025,,,,,,,3.602,5493.96,2025,True,82,,True
+chart_series,Population-weighted median,2016-25,2016,2025,,,,,,,5.013,5493.96,2025,True,82,China,True
+economy,,1988-95,1988,1995,Albania,ALB,UM,,False,8,2.0548,3.287,1990,True,,,True
+economy,,1996-2005,1996,2005,Albania,ALB,UM,L,False,10,17.2612,3.011,2005,True,,,True
+economy,,2006-15,2006,2015,Albania,ALB,UM,LM,True,10,3.4041,2.731,2015,True,,,True
+economy,,2016-25,2016,2025,Albania,ALB,UM,UM,True,10,12.2258,2.35,2025,True,,,True
+economy,,1988-95,1988,1995,Algeria,DZA,UM,UM,True,8,-6.5601,25.376,1990,True,,,True
+economy,,1996-2005,1996,2005,Algeria,DZA,UM,LM,True,10,5.4364,33.109,2005,True,,,True
+economy,,2006-15,2006,2015,Algeria,DZA,UM,LM,True,10,6.3018,40.02,2015,True,,,True
+economy,,2016-25,2016,2025,Algeria,DZA,UM,UM,True,10,1.5809,47.435,2025,True,,,True
+economy,,1988-95,1988,1995,Angola,AGO,LM,,False,8,-6.0683,11.626,1990,True,,,True
+economy,,1996-2005,1996,2005,Angola,AGO,LM,L,False,10,16.3664,19.291,2005,True,,,True
+economy,,2006-15,2006,2015,Angola,AGO,LM,LM,True,10,9.4386,28.158,2015,True,,,True
+economy,,2016-25,2016,2025,Angola,AGO,LM,UM,True,10,-0.8246,39.04,2025,True,,,True
+economy,,1988-95,1988,1995,Argentina,ARG,UM,UM,True,8,9.94,32.756,1990,True,,,True
+economy,,1996-2005,1996,2005,Argentina,ARG,UM,UM,True,10,-3.5692,39.217,2005,True,,,True
+economy,,2006-15,2006,2015,Argentina,ARG,UM,UM,True,10,13.377,43.477,2015,True,,,True
+economy,,2016-25,2016,2025,Argentina,ARG,UM,UM,True,10,6.2354,45.851,2025,True,,,True
+economy,,1988-95,1988,1995,Armenia,ARM,UM,,False,3,,3.552,1990,False,,,False
+economy,,1996-2005,1996,2005,Armenia,ARM,UM,L,False,10,8.3478,3.146,2005,False,,,False
+economy,,2006-15,2006,2015,Armenia,ARM,UM,LM,True,10,5.4725,3.005,2015,False,,,False
+economy,,2016-25,2016,2025,Armenia,ARM,UM,LM,True,10,9.2319,3.087,2025,False,,,False
+economy,,1988-95,1988,1995,Azerbaijan,AZE,UM,,False,3,,7.175,1990,False,,,False
+economy,,1996-2005,1996,2005,Azerbaijan,AZE,UM,L,False,10,15.9664,8.392,2005,False,,,False
+economy,,2006-15,2006,2015,Azerbaijan,AZE,UM,LM,True,10,16.4937,9.649,2015,False,,,False
+economy,,2016-25,2016,2025,Azerbaijan,AZE,UM,UM,True,10,4.9353,10.247,2025,False,,,False
+economy,,1988-95,1988,1995,Bangladesh,BGD,LM,L,False,8,3.5099,111.634,1990,True,,,True
+economy,,1996-2005,1996,2005,Bangladesh,BGD,LM,L,False,10,5.0837,144.716,2005,True,,,True
+economy,,2006-15,2006,2015,Bangladesh,BGD,LM,L,False,10,9.2852,159.383,2015,True,,,True
+economy,,2016-25,2016,2025,Bangladesh,BGD,LM,LM,True,10,9.7582,175.687,2025,True,,,True
+economy,,1988-95,1988,1995,Belarus,BLR,UM,,False,3,,10.189,1990,False,,,False
+economy,,1996-2005,1996,2005,Belarus,BLR,UM,LM,True,10,5.719,9.664,2005,False,,,False
+economy,,2006-15,2006,2015,Belarus,BLR,UM,LM,True,10,7.2129,9.461,2015,False,,,False
+economy,,2016-25,2016,2025,Belarus,BLR,UM,UM,True,10,7.2292,9.086,2025,False,,,False
+economy,,1988-95,1988,1995,Belize,BLZ,UM,LM,True,8,8.3131,0.183,1990,True,,,True
+economy,,1996-2005,1996,2005,Belize,BLZ,UM,LM,True,10,1.4064,0.28,2005,True,,,True
+economy,,2006-15,2006,2015,Belize,BLZ,UM,UM,True,10,2.0463,0.356,2015,True,,,True
+economy,,2016-25,2016,2025,Belize,BLZ,UM,UM,True,10,3.2319,0.423,2025,True,,,True
+economy,,1988-95,1988,1995,Benin,BEN,LM,L,False,8,2.8571,5.281,1990,True,,,True
+economy,,1996-2005,1996,2005,Benin,BEN,LM,L,False,10,11.5966,8.426,2005,True,,,True
+economy,,2006-15,2006,2015,Benin,BEN,LM,L,False,10,3.6775,11.361,2015,True,,,True
+economy,,2016-25,2016,2025,Benin,BEN,LM,L,False,10,3.671,14.814,2025,True,,,True
+economy,,1988-95,1988,1995,Bhutan,BTN,LM,L,False,8,2.0833,0.589,1990,True,,,True
+economy,,1996-2005,1996,2005,Bhutan,BTN,LM,L,False,10,10.6838,0.662,2005,True,,,True
+economy,,2006-15,2006,2015,Bhutan,BTN,LM,L,False,10,8.3212,0.741,2015,True,,,True
+economy,,2016-25,2016,2025,Bhutan,BTN,LM,LM,True,10,5.7642,0.797,2025,True,,,True
+economy,,1988-95,1988,1995,Bolivia,BOL,LM,LM,True,8,2.8006,7.13,1990,True,,,True
+economy,,1996-2005,1996,2005,Bolivia,BOL,LM,LM,True,10,2.1392,9.361,2005,True,,,True
+economy,,2006-15,2006,2015,Bolivia,BOL,LM,LM,True,10,10.5046,11.015,2015,True,,,True
+economy,,2016-25,2016,2025,Bolivia,BOL,LM,LM,True,10,5.6313,12.582,2025,True,,,True
+economy,,1988-95,1988,1995,Bosnia and Herzegovina,BIH,UM,,False,3,,4.449,1990,False,,,False
+economy,,1996-2005,1996,2005,Bosnia and Herzegovina,BIH,UM,L,False,10,18.0245,4.096,2005,False,,,False
+economy,,2006-15,2006,2015,Bosnia and Herzegovina,BIH,UM,LM,True,10,3.585,3.519,2015,False,,,False
+economy,,2016-25,2016,2025,Bosnia and Herzegovina,BIH,UM,UM,True,10,7.7175,3.14,2025,False,,,False
+economy,,1988-95,1988,1995,Botswana,BWA,UM,LM,True,8,11.7023,1.306,1990,True,,,True
+economy,,1996-2005,1996,2005,Botswana,BWA,UM,LM,True,10,1.6098,1.84,2005,True,,,True
+economy,,2006-15,2006,2015,Botswana,BWA,UM,UM,True,10,3.4056,2.203,2015,True,,,True
+economy,,2016-25,2016,2025,Botswana,BWA,UM,UM,True,10,2.9177,2.562,2025,True,,,True
+economy,,1988-95,1988,1995,Brazil,BRA,UM,UM,True,8,7.46,149.143,1990,True,,,True
+economy,,1996-2005,1996,2005,Brazil,BRA,UM,UM,True,10,-3.0348,184.688,2005,True,,,True
+economy,,2006-15,2006,2015,Brazil,BRA,UM,LM,True,10,13.0626,201.676,2015,True,,,True
+economy,,2016-25,2016,2025,Brazil,BRA,UM,UM,True,10,2.8402,212.812,2025,True,,,True
+economy,,1988-95,1988,1995,Cabo Verde,CPV,UM,,False,8,9.7144,0.375,1990,True,,,True
+economy,,1996-2005,1996,2005,Cabo Verde,CPV,UM,LM,True,10,1.9504,0.485,2005,True,,,True
+economy,,2006-15,2006,2015,Cabo Verde,CPV,UM,LM,True,10,3.6968,0.512,2015,True,,,True
+economy,,2016-25,2016,2025,Cabo Verde,CPV,UM,LM,True,10,6.8127,0.527,2025,True,,,True
+economy,,1988-95,1988,1995,Cambodia,KHM,LM,L,False,8,9.375,7.375,1990,True,,,True
+economy,,1996-2005,1996,2005,Cambodia,KHM,LM,L,False,10,5.234,13.439,2005,True,,,True
+economy,,2006-15,2006,2015,Cambodia,KHM,LM,L,False,10,9.801,15.623,2015,True,,,True
+economy,,2016-25,2016,2025,Cambodia,KHM,LM,LM,True,10,7.4593,17.848,2025,True,,,True
+economy,,1988-95,1988,1995,Cameroon,CMR,LM,LM,True,8,-4.6236,11.332,1990,True,,,True
+economy,,1996-2005,1996,2005,Cameroon,CMR,LM,L,False,10,-0.6494,17.075,2005,True,,,True
+economy,,2006-15,2006,2015,Cameroon,CMR,LM,LM,True,10,3.348,22.763,2015,True,,,True
+economy,,2016-25,2016,2025,Cameroon,CMR,LM,LM,True,10,1.9182,29.879,2025,True,,,True
+economy,,1988-95,1988,1995,China,CHN,UM,L,False,8,7.0455,1135.185,1990,True,,,True
+economy,,1996-2005,1996,2005,China,CHN,UM,L,False,10,12.9143,1303.72,2005,True,,,True
+economy,,2006-15,2006,2015,China,CHN,UM,LM,True,10,16.9569,1379.86,2015,True,,,True
+economy,,2016-25,2016,2025,China,CHN,UM,UM,True,10,5.013,1406.585,2025,True,,,True
+economy,,1988-95,1988,1995,Colombia,COL,UM,LM,True,8,8.0469,32.44,1990,True,,,True
+economy,,1996-2005,1996,2005,Colombia,COL,UM,LM,True,10,1.0593,42.129,2005,True,,,True
+economy,,2006-15,2006,2015,Colombia,COL,UM,LM,True,10,10.6869,46.97,2015,True,,,True
+economy,,2016-25,2016,2025,Colombia,COL,UM,UM,True,10,4.1857,53.426,2025,True,,,True
+economy,,1988-95,1988,1995,Comoros,COM,LM,L,False,8,0.5208,0.445,1990,True,,,True
+economy,,1996-2005,1996,2005,Comoros,COM,LM,L,False,10,1.3956,0.593,2005,True,,,True
+economy,,2006-15,2006,2015,Comoros,COM,LM,L,False,10,2.0505,0.727,2015,True,,,True
+economy,,2016-25,2016,2025,Comoros,COM,LM,L,False,10,2.6001,0.883,2025,True,,,True
+economy,,1988-95,1988,1995,"Congo, Rep.",COG,LM,LM,True,8,-7.2543,2.381,1990,True,,,True
+economy,,1996-2005,1996,2005,"Congo, Rep.",COG,LM,L,False,10,9.1047,3.696,2005,True,,,True
+economy,,2006-15,2006,2015,"Congo, Rep.",COG,LM,LM,True,10,8.2252,5.098,2015,True,,,True
+economy,,2016-25,2016,2025,"Congo, Rep.",COG,LM,LM,True,10,1.3671,6.484,2025,True,,,True
+economy,,1988-95,1988,1995,Cuba,CUB,UM,,False,8,-2.3663,10.632,1990,False,,,False
+economy,,1996-2005,1996,2005,Cuba,CUB,UM,LM,True,10,6.721,11.263,2005,False,,,False
+economy,,2006-15,2006,2015,Cuba,CUB,UM,LM,True,10,6.8072,11.275,2015,False,,,False
+economy,,2016-25,2016,2025,Cuba,CUB,UM,UM,True,4,,10.937,2025,False,,,False
+economy,,1988-95,1988,1995,Côte d'Ivoire,CIV,LM,LM,True,8,-3.9474,12.19,1990,True,,,True
+economy,,1996-2005,1996,2005,Côte d'Ivoire,CIV,LM,L,False,10,2.8988,20.068,2005,True,,,True
+economy,,2006-15,2006,2015,Côte d'Ivoire,CIV,LM,L,False,10,5.8519,25.246,2015,True,,,True
+economy,,2016-25,2016,2025,Côte d'Ivoire,CIV,LM,LM,True,10,4.1707,32.712,2025,True,,,True
+economy,,1988-95,1988,1995,Djibouti,DJI,LM,,False,0,,0.58,1990,False,,,False
+economy,,1996-2005,1996,2005,Djibouti,DJI,LM,LM,True,0,,0.839,2005,False,,,False
+economy,,2006-15,2006,2015,Djibouti,DJI,LM,LM,True,0,,1.02,2015,False,,,False
+economy,,2016-25,2016,2025,Djibouti,DJI,LM,LM,True,10,5.9313,1.184,2025,False,,,False
+economy,,1988-95,1988,1995,Dominica,DMA,UM,LM,True,8,6.5955,0.07,1990,True,,,True
+economy,,1996-2005,1996,2005,Dominica,DMA,UM,LM,True,10,3.5896,0.069,2005,True,,,True
+economy,,2006-15,2006,2015,Dominica,DMA,UM,UM,True,10,2.9992,0.07,2015,True,,,True
+economy,,2016-25,2016,2025,Dominica,DMA,UM,UM,True,10,5.2588,0.066,2025,True,,,True
+economy,,1988-95,1988,1995,Dominican Republic,DOM,UM,LM,True,8,9.7844,7.151,1990,True,,,True
+economy,,1996-2005,1996,2005,Dominican Republic,DOM,UM,LM,True,10,4.6373,9.225,2005,True,,,True
+economy,,2006-15,2006,2015,Dominican Republic,DOM,UM,LM,True,10,4.6389,10.435,2015,True,,,True
+economy,,2016-25,2016,2025,Dominican Republic,DOM,UM,UM,True,10,5.2423,11.52,2025,True,,,True
+economy,,1988-95,1988,1995,Ecuador,ECU,UM,LM,True,8,6.3338,10.474,1990,True,,,True
+economy,,1996-2005,1996,2005,Ecuador,ECU,UM,LM,True,10,5.4904,13.846,2005,True,,,True
+economy,,2006-15,2006,2015,Ecuador,ECU,UM,LM,True,10,8.5757,16.266,2015,True,,,True
+economy,,2016-25,2016,2025,Ecuador,ECU,UM,UM,True,10,1.7179,18.29,2025,True,,,True
+economy,,1988-95,1988,1995,"Egypt, Arab Rep.",EGY,LM,LM,True,8,-1.3699,58.397,1990,True,,,True
+economy,,1996-2005,1996,2005,"Egypt, Arab Rep.",EGY,LM,LM,True,10,4.0229,81.101,2005,True,,,True
+economy,,2006-15,2006,2015,"Egypt, Arab Rep.",EGY,LM,LM,True,10,9.6769,99.597,2015,True,,,True
+economy,,2016-25,2016,2025,"Egypt, Arab Rep.",EGY,LM,LM,True,10,-3.7668,118.366,2025,True,,,True
+economy,,1988-95,1988,1995,El Salvador,SLV,UM,LM,True,8,7.2934,5.4,1990,True,,,True
+economy,,1996-2005,1996,2005,El Salvador,SLV,UM,LM,True,10,5.9984,6.006,2005,True,,,True
+economy,,2006-15,2006,2015,El Salvador,SLV,UM,LM,True,10,4.6341,6.184,2015,True,,,True
+economy,,2016-25,2016,2025,El Salvador,SLV,UM,LM,True,10,4.7466,6.366,2025,True,,,True
+economy,,1988-95,1988,1995,Equatorial Guinea,GNQ,UM,L,False,8,-1.5152,0.474,1990,True,,,True
+economy,,1996-2005,1996,2005,Equatorial Guinea,GNQ,UM,L,False,10,27.2757,0.947,2005,True,,,True
+economy,,2006-15,2006,2015,Equatorial Guinea,GNQ,UM,UM,True,10,11.2508,1.454,2015,True,,,True
+economy,,2016-25,2016,2025,Equatorial Guinea,GNQ,UM,UM,True,10,-3.8836,1.938,2025,True,,,True
+economy,,1988-95,1988,1995,Eswatini,SWZ,LM,LM,True,5,,0.872,1990,False,,,False
+economy,,1996-2005,1996,2005,Eswatini,SWZ,LM,LM,True,10,1.4402,1.079,2005,False,,,False
+economy,,2006-15,2006,2015,Eswatini,SWZ,LM,LM,True,10,3.6152,1.143,2015,False,,,False
+economy,,2016-25,2016,2025,Eswatini,SWZ,LM,LM,True,10,1.7842,1.256,2025,False,,,False
+economy,,1988-95,1988,1995,Fiji,FJI,UM,LM,True,8,3.2042,0.773,1990,True,,,True
+economy,,1996-2005,1996,2005,Fiji,FJI,UM,LM,True,10,1.1211,0.882,2005,True,,,True
+economy,,2006-15,2006,2015,Fiji,FJI,UM,LM,True,10,4.1272,0.919,2015,True,,,True
+economy,,2016-25,2016,2025,Fiji,FJI,UM,UM,True,10,3.2937,0.933,2025,True,,,True
+economy,,1988-95,1988,1995,Gabon,GAB,UM,UM,True,8,2.1008,0.984,1990,True,,,True
+economy,,1996-2005,1996,2005,Gabon,GAB,UM,UM,True,10,5.1035,1.463,2005,True,,,True
+economy,,2006-15,2006,2015,Gabon,GAB,UM,UM,True,10,3.5584,2.041,2015,True,,,True
+economy,,2016-25,2016,2025,Gabon,GAB,UM,UM,True,10,2.6904,2.593,2025,True,,,True
+economy,,1988-95,1988,1995,Georgia,GEO,UM,,False,5,,4.802,1990,False,,,False
+economy,,1996-2005,1996,2005,Georgia,GEO,UM,L,False,10,12.7747,3.902,2005,False,,,False
+economy,,2006-15,2006,2015,Georgia,GEO,UM,LM,True,10,10.6489,3.725,2015,False,,,False
+economy,,2016-25,2016,2025,Georgia,GEO,UM,UM,True,10,10.4133,3.936,2025,False,,,False
+economy,,1988-95,1988,1995,Ghana,GHA,LM,L,False,8,-1.3514,15.395,1990,True,,,True
+economy,,1996-2005,1996,2005,Ghana,GHA,LM,L,False,10,2.6671,22.449,2005,True,,,True
+economy,,2006-15,2006,2015,Ghana,GHA,LM,L,False,10,11.4352,28.696,2015,True,,,True
+economy,,2016-25,2016,2025,Ghana,GHA,LM,LM,True,10,2.8697,35.064,2025,True,,,True
+economy,,1988-95,1988,1995,Grenada,GRD,UM,LM,True,8,3.9387,0.1,1990,True,,,True
+economy,,1996-2005,1996,2005,Grenada,GRD,UM,LM,True,10,6.0734,0.11,2005,True,,,True
+economy,,2006-15,2006,2015,Grenada,GRD,UM,UM,True,10,2.5969,0.115,2015,True,,,True
+economy,,2016-25,2016,2025,Grenada,GRD,UM,UM,True,10,6.3956,0.117,2025,True,,,True
+economy,,1988-95,1988,1995,Guatemala,GTM,UM,LM,True,8,5.2433,9.025,1990,True,,,True
+economy,,1996-2005,1996,2005,Guatemala,GTM,UM,LM,True,10,4.8328,13.088,2005,True,,,True
+economy,,2006-15,2006,2015,Guatemala,GTM,UM,LM,True,10,6.372,15.972,2015,True,,,True
+economy,,2016-25,2016,2025,Guatemala,GTM,UM,LM,True,10,5.7592,18.688,2025,True,,,True
+economy,,1988-95,1988,1995,Guinea,GIN,LM,L,False,8,1.5476,6.434,1990,True,,,True
+economy,,1996-2005,1996,2005,Guinea,GIN,LM,L,False,10,-4.057,9.246,2005,True,,,True
+economy,,2006-15,2006,2015,Guinea,GIN,LM,L,False,10,2.2614,11.767,2015,True,,,True
+economy,,2016-25,2016,2025,Guinea,GIN,LM,L,False,10,7.4813,15.1,2025,True,,,True
+economy,,1988-95,1988,1995,Haiti,HTI,LM,L,False,8,2.2063,6.854,1990,True,,,True
+economy,,1996-2005,1996,2005,Haiti,HTI,LM,L,False,10,10.1516,9.061,2005,True,,,True
+economy,,2006-15,2006,2015,Haiti,HTI,LM,L,False,10,8.6722,10.523,2015,True,,,True
+economy,,2016-25,2016,2025,Haiti,HTI,LM,L,False,10,1.9024,11.906,2025,True,,,True
+economy,,1988-95,1988,1995,Honduras,HND,LM,LM,True,8,-3.0592,4.98,1990,True,,,True
+economy,,1996-2005,1996,2005,Honduras,HND,LM,L,False,10,5.0794,7.478,2005,True,,,True
+economy,,2006-15,2006,2015,Honduras,HND,LM,LM,True,10,4.2158,9.237,2015,True,,,True
+economy,,2016-25,2016,2025,Honduras,HND,LM,LM,True,10,5.4841,11.006,2025,True,,,True
+economy,,1988-95,1988,1995,India,IND,LM,L,False,8,0.0,864.972,1990,True,,,True
+economy,,1996-2005,1996,2005,India,IND,LM,L,False,10,4.9085,1154.676,2005,True,,,True
+economy,,2006-15,2006,2015,India,IND,LM,L,False,10,8.9001,1328.024,2015,True,,,True
+economy,,2016-25,2016,2025,India,IND,LM,LM,True,10,6.4409,1463.866,2025,True,,,True
+economy,,1988-95,1988,1995,Indonesia,IDN,UM,L,False,8,8.0128,183.501,1990,True,,,True
+economy,,1996-2005,1996,2005,Indonesia,IDN,UM,LM,True,10,10.8689,230.872,2005,True,,,True
+economy,,2006-15,2006,2015,Indonesia,IDN,UM,LM,True,10,14.3981,261.799,2015,True,,,True
+economy,,2016-25,2016,2025,Indonesia,IDN,UM,LM,True,10,4.7884,285.721,2025,True,,,True
+economy,,1988-95,1988,1995,"Iran, Islamic Rep.",IRN,UM,UM,True,8,-10.9401,58.38,1990,True,,,True
+economy,,1996-2005,1996,2005,"Iran, Islamic Rep.",IRN,UM,LM,True,10,8.7465,71.828,2005,True,,,True
+economy,,2006-15,2006,2015,"Iran, Islamic Rep.",IRN,UM,LM,True,10,11.899,82.619,2015,True,,,True
+economy,,2016-25,2016,2025,"Iran, Islamic Rep.",IRN,UM,UM,True,10,1.2327,92.418,2025,True,,,True
+economy,,1988-95,1988,1995,Iraq,IRQ,UM,UM,True,8,2.4496,17.581,1990,True,,,True
+economy,,1996-2005,1996,2005,Iraq,IRQ,UM,LM,True,10,22.6525,28.407,2005,True,,,True
+economy,,2006-15,2006,2015,Iraq,IRQ,UM,LM,True,10,13.1322,37.561,2015,True,,,True
+economy,,2016-25,2016,2025,Iraq,IRQ,UM,UM,True,10,1.1409,47.021,2025,True,,,True
+economy,,1988-95,1988,1995,Jamaica,JAM,UM,LM,True,8,9.2792,2.38,1990,True,,,True
+economy,,1996-2005,1996,2005,Jamaica,JAM,UM,LM,True,10,5.2108,2.687,2005,True,,,True
+economy,,2006-15,2006,2015,Jamaica,JAM,UM,LM,True,10,3.1304,2.803,2015,True,,,True
+economy,,2016-25,2016,2025,Jamaica,JAM,UM,UM,True,10,6.0029,2.837,2025,True,,,True
+economy,,1988-95,1988,1995,Jordan,JOR,UM,LM,True,8,2.1759,3.622,1990,True,,,True
+economy,,1996-2005,1996,2005,Jordan,JOR,UM,LM,True,10,3.6598,6.03,2005,True,,,True
+economy,,2006-15,2006,2015,Jordan,JOR,UM,LM,True,10,5.5452,9.545,2015,True,,,True
+economy,,2016-25,2016,2025,Jordan,JOR,UM,UM,True,10,2.3065,11.521,2025,True,,,True
+economy,,1988-95,1988,1995,Kazakhstan,KAZ,UM,,False,2,,17.154,1990,False,,,False
+economy,,1996-2005,1996,2005,Kazakhstan,KAZ,UM,LM,True,10,5.3482,15.968,2005,False,,,False
+economy,,2006-15,2006,2015,Kazakhstan,KAZ,UM,LM,True,10,15.6431,18.084,2015,False,,,False
+economy,,2016-25,2016,2025,Kazakhstan,KAZ,UM,UM,True,10,5.4418,20.844,2025,False,,,False
+economy,,1988-95,1988,1995,Kenya,KEN,LM,L,False,8,-4.2247,22.893,1990,True,,,True
+economy,,1996-2005,1996,2005,Kenya,KEN,LM,L,False,10,8.6081,35.796,2005,True,,,True
+economy,,2006-15,2006,2015,Kenya,KEN,LM,L,False,10,9.6108,47.089,2015,True,,,True
+economy,,2016-25,2016,2025,Kenya,KEN,LM,LM,True,10,5.5556,57.532,2025,True,,,True
+economy,,1988-95,1988,1995,Kiribati,KIR,LM,LM,True,8,9.2906,0.075,1990,True,,,True
+economy,,1996-2005,1996,2005,Kiribati,KIR,LM,LM,True,10,0.2997,0.098,2005,True,,,True
+economy,,2006-15,2006,2015,Kiribati,KIR,LM,LM,True,10,7.1204,0.117,2015,True,,,True
+economy,,2016-25,2016,2025,Kiribati,KIR,LM,LM,True,10,4.4046,0.136,2025,True,,,True
+economy,,1988-95,1988,1995,Kosovo,XKX,UM,,False,0,,1.974,1990,False,,,False
+economy,,1996-2005,1996,2005,Kosovo,XKX,UM,,False,0,,1.818,2005,False,,,False
+economy,,2006-15,2006,2015,Kosovo,XKX,UM,,False,5,,1.788,2015,False,,,False
+economy,,2016-25,2016,2025,Kosovo,XKX,UM,LM,True,10,9.0024,1.577,2025,False,,,False
+economy,,1988-95,1988,1995,Kyrgyz Republic,KGZ,LM,,False,3,,4.391,1990,False,,,False
+economy,,1996-2005,1996,2005,Kyrgyz Republic,KGZ,LM,L,False,10,1.7857,5.163,2005,False,,,False
+economy,,2006-15,2006,2015,Kyrgyz Republic,KGZ,LM,L,False,10,12.1345,6.04,2015,False,,,False
+economy,,2016-25,2016,2025,Kyrgyz Republic,KGZ,LM,LM,True,10,7.5252,7.343,2025,False,,,False
+economy,,1988-95,1988,1995,Lao PDR,LAO,LM,L,False,8,11.5132,4.312,1990,True,,,True
+economy,,1996-2005,1996,2005,Lao PDR,LAO,LM,L,False,10,4.8925,5.87,2005,True,,,True
+economy,,2006-15,2006,2015,Lao PDR,LAO,LM,L,False,10,15.9596,6.802,2015,True,,,True
+economy,,2016-25,2016,2025,Lao PDR,LAO,LM,LM,True,10,1.8268,7.873,2025,True,,,True
+economy,,1988-95,1988,1995,Lebanon,LBN,LM,LM,True,5,,3.595,1990,False,,,False
+economy,,1996-2005,1996,2005,Lebanon,LBN,LM,LM,True,10,4.9007,4.671,2005,False,,,False
+economy,,2006-15,2006,2015,Lebanon,LBN,LM,UM,True,10,4.402,6.472,2015,False,,,False
+economy,,2016-25,2016,2025,Lebanon,LBN,LM,UM,True,9,-4.0431,5.849,2025,False,,,False
+economy,,1988-95,1988,1995,Lesotho,LSO,LM,L,False,8,5.6418,1.81,1990,True,,,True
+economy,,1996-2005,1996,2005,Lesotho,LSO,LM,LM,True,10,1.4925,1.953,2005,True,,,True
+economy,,2006-15,2006,2015,Lesotho,LSO,LM,LM,True,10,2.7708,2.105,2015,True,,,True
+economy,,2016-25,2016,2025,Lesotho,LSO,LM,LM,True,10,0.461,2.363,2025,True,,,True
+economy,,1988-95,1988,1995,Libya,LBY,UM,UM,True,8,-0.9838,4.445,1990,True,,,True
+economy,,1996-2005,1996,2005,Libya,LBY,UM,UM,True,10,-1.0517,5.859,2005,True,,,True
+economy,,2006-15,2006,2015,Libya,LBY,UM,UM,True,10,-1.8204,6.532,2015,True,,,True
+economy,,2016-25,2016,2025,Libya,LBY,UM,UM,True,10,0.8908,7.459,2025,True,,,True
+economy,,1988-95,1988,1995,Malaysia,MYS,UM,LM,True,8,10.1975,17.833,1990,True,,,True
+economy,,1996-2005,1996,2005,Malaysia,MYS,UM,UM,True,10,4.6829,25.836,2005,True,,,True
+economy,,2006-15,2006,2015,Malaysia,MYS,UM,UM,True,10,8.874,31.233,2015,True,,,True
+economy,,2016-25,2016,2025,Malaysia,MYS,UM,UM,True,10,2.3719,35.978,2025,True,,,True
+economy,,1988-95,1988,1995,Maldives,MDV,UM,L,False,8,11.1481,0.225,1990,True,,,True
+economy,,1996-2005,1996,2005,Maldives,MDV,UM,LM,True,10,6.8735,0.306,2005,True,,,True
+economy,,2006-15,2006,2015,Maldives,MDV,UM,LM,True,10,7.8184,0.428,2015,True,,,True
+economy,,2016-25,2016,2025,Maldives,MDV,UM,UM,True,10,7.0051,0.53,2025,True,,,True
+economy,,1988-95,1988,1995,Marshall Islands,MHL,UM,,False,8,7.5175,0.045,1990,True,,,True
+economy,,1996-2005,1996,2005,Marshall Islands,MHL,UM,LM,True,10,3.8434,0.052,2005,True,,,True
+economy,,2006-15,2006,2015,Marshall Islands,MHL,UM,LM,True,10,2.5838,0.049,2015,True,,,True
+economy,,2016-25,2016,2025,Marshall Islands,MHL,UM,UM,True,10,5.9614,0.036,2025,True,,,True
+economy,,1988-95,1988,1995,Mauritania,MRT,LM,L,False,8,4.0757,1.952,1990,True,,,True
+economy,,1996-2005,1996,2005,Mauritania,MRT,LM,L,False,10,-1.1905,2.939,2005,True,,,True
+economy,,2006-15,2006,2015,Mauritania,MRT,LM,L,False,10,5.4032,3.966,2015,True,,,True
+economy,,2016-25,2016,2025,Mauritania,MRT,LM,LM,True,10,3.5601,5.315,2025,True,,,True
+economy,,1988-95,1988,1995,Mauritius,MUS,UM,LM,True,8,7.6895,1.059,1990,True,,,True
+economy,,1996-2005,1996,2005,Mauritius,MUS,UM,UM,True,10,4.8016,1.228,2005,True,,,True
+economy,,2006-15,2006,2015,Mauritius,MUS,UM,UM,True,10,5.4052,1.263,2015,True,,,True
+economy,,2016-25,2016,2025,Mauritius,MUS,UM,UM,True,10,3.87,1.244,2025,True,,,True
+economy,,1988-95,1988,1995,Mexico,MEX,UM,LM,True,8,16.2353,82.82,1990,True,,,True
+economy,,1996-2005,1996,2005,Mexico,MEX,UM,UM,True,10,5.7028,105.812,2005,True,,,True
+economy,,2006-15,2006,2015,Mexico,MEX,UM,UM,True,10,2.8313,121.072,2015,True,,,True
+economy,,2016-25,2016,2025,Mexico,MEX,UM,UM,True,10,4.78,131.947,2025,True,,,True
+economy,,1988-95,1988,1995,"Micronesia, Fed. Sts.",FSM,UM,,False,8,5.3717,0.101,1990,True,,,True
+economy,,1996-2005,1996,2005,"Micronesia, Fed. Sts.",FSM,UM,LM,True,10,2.0691,0.111,2005,True,,,True
+economy,,2006-15,2006,2015,"Micronesia, Fed. Sts.",FSM,UM,LM,True,10,2.4939,0.109,2015,True,,,True
+economy,,2016-25,2016,2025,"Micronesia, Fed. Sts.",FSM,UM,LM,True,10,3.0173,0.114,2025,True,,,True
+economy,,1988-95,1988,1995,Moldova,MDA,UM,,False,3,,2.978,1990,False,,,False
+economy,,1996-2005,1996,2005,Moldova,MDA,UM,LM,True,10,3.5204,2.889,2005,False,,,False
+economy,,2006-15,2006,2015,Moldova,MDA,UM,LM,True,10,14.4958,2.836,2015,False,,,False
+economy,,2016-25,2016,2025,Moldova,MDA,UM,LM,True,10,11.5279,2.361,2025,False,,,False
+economy,,1988-95,1988,1995,Mongolia,MNG,UM,,False,8,-12.1623,2.099,1990,True,,,True
+economy,,1996-2005,1996,2005,Mongolia,MNG,UM,L,False,10,6.9627,2.536,2005,True,,,True
+economy,,2006-15,2006,2015,Mongolia,MNG,UM,L,False,10,21.7259,3.027,2015,True,,,True
+economy,,2016-25,2016,2025,Mongolia,MNG,UM,LM,True,10,7.2909,3.569,2025,True,,,True
+economy,,1988-95,1988,1995,Montenegro,MNE,UM,,False,0,,0.606,1990,False,,,False
+economy,,1996-2005,1996,2005,Montenegro,MNE,UM,,False,6,,0.614,2005,False,,,False
+economy,,2006-15,2006,2015,Montenegro,MNE,UM,,False,10,4.0955,0.625,2015,False,,,False
+economy,,2016-25,2016,2025,Montenegro,MNE,UM,UM,True,10,9.8339,0.623,2025,False,,,False
+economy,,1988-95,1988,1995,Morocco,MAR,LM,LM,True,8,3.7997,24.376,1990,True,,,True
+economy,,1996-2005,1996,2005,Morocco,MAR,LM,LM,True,10,2.6456,30.358,2005,True,,,True
+economy,,2006-15,2006,2015,Morocco,MAR,LM,LM,True,10,2.9548,34.608,2015,True,,,True
+economy,,2016-25,2016,2025,Morocco,MAR,LM,LM,True,10,2.0453,38.431,2025,True,,,True
+economy,,1988-95,1988,1995,Myanmar,MMR,LM,L,False,8,15.4762,39.817,1990,True,,,True
+economy,,1996-2005,1996,2005,Myanmar,MMR,LM,L,False,10,13.5747,47.438,2005,True,,,True
+economy,,2006-15,2006,2015,Myanmar,MMR,LM,L,False,10,15.3409,51.089,2015,True,,,True
+economy,,2016-25,2016,2025,Myanmar,MMR,LM,LM,True,10,0.0,54.851,2025,True,,,True
+economy,,1988-95,1988,1995,Namibia,NAM,LM,,False,8,5.8906,1.369,1990,True,,,True
+economy,,1996-2005,1996,2005,Namibia,NAM,LM,LM,True,10,-0.6461,1.967,2005,True,,,True
+economy,,2006-15,2006,2015,Namibia,NAM,LM,LM,True,10,4.115,2.374,2015,True,,,True
+economy,,2016-25,2016,2025,Namibia,NAM,LM,UM,True,10,0.1184,3.093,2025,True,,,True
+economy,,1988-95,1988,1995,Nepal,NPL,LM,L,False,8,0.0,19.525,1990,True,,,True
+economy,,1996-2005,1996,2005,Nepal,NPL,LM,L,False,10,4.881,26.309,2005,True,,,True
+economy,,2006-15,2006,2015,Nepal,NPL,LM,L,False,10,11.814,27.824,2015,True,,,True
+economy,,2016-25,2016,2025,Nepal,NPL,LM,L,False,10,5.5615,29.618,2025,True,,,True
+economy,,1988-95,1988,1995,Nicaragua,NIC,LM,LM,True,8,-2.399,4.163,1990,True,,,True
+economy,,1996-2005,1996,2005,Nicaragua,NIC,LM,L,False,10,4.1914,5.342,2005,True,,,True
+economy,,2006-15,2006,2015,Nicaragua,NIC,LM,LM,True,10,5.3937,6.149,2015,True,,,True
+economy,,2016-25,2016,2025,Nicaragua,NIC,LM,LM,True,10,4.0169,7.008,2025,True,,,True
+economy,,1988-95,1988,1995,Nigeria,NGA,LM,L,False,0,,97.121,1990,False,,,False
+economy,,1996-2005,1996,2005,Nigeria,NGA,LM,L,False,0,,145.017,2005,False,,,False
+economy,,2006-15,2006,2015,Nigeria,NGA,LM,L,False,7,,190.672,2015,False,,,False
+economy,,2016-25,2016,2025,Nigeria,NGA,LM,LM,True,10,-7.6851,237.528,2025,False,,,False
+economy,,1988-95,1988,1995,North Macedonia,MKD,UM,,False,3,,2.064,1990,False,,,False
+economy,,1996-2005,1996,2005,North Macedonia,MKD,UM,LM,True,10,2.2131,2.005,2005,False,,,False
+economy,,2006-15,2006,2015,North Macedonia,MKD,UM,LM,True,10,5.1748,1.912,2015,False,,,False
+economy,,2016-25,2016,2025,North Macedonia,MKD,UM,UM,True,10,6.1318,1.821,2025,False,,,False
+economy,,1988-95,1988,1995,Pakistan,PAK,LM,L,False,8,0.0,116.156,1990,True,,,True
+economy,,1996-2005,1996,2005,Pakistan,PAK,LM,L,False,10,9.4144,175.453,2005,True,,,True
+economy,,2006-15,2006,2015,Pakistan,PAK,LM,L,False,10,4.4619,217.291,2015,True,,,True
+economy,,2016-25,2016,2025,Pakistan,PAK,LM,LM,True,10,4.2724,255.22,2025,True,,,True
+economy,,1988-95,1988,1995,Papua New Guinea,PNG,LM,LM,True,8,4.0584,3.896,1990,True,,,True
+economy,,1996-2005,1996,2005,Papua New Guinea,PNG,LM,LM,True,10,-8.628,6.536,2005,True,,,True
+economy,,2006-15,2006,2015,Papua New Guinea,PNG,LM,L,False,10,16.4647,8.743,2015,True,,,True
+economy,,2016-25,2016,2025,Papua New Guinea,PNG,LM,LM,True,10,0.5245,10.763,2025,True,,,True
+economy,,1988-95,1988,1995,Paraguay,PRY,UM,LM,True,8,7.2382,4.036,1990,True,,,True
+economy,,1996-2005,1996,2005,Paraguay,PRY,UM,LM,True,10,-3.381,5.448,2005,True,,,True
+economy,,2006-15,2006,2015,Paraguay,PRY,UM,LM,True,10,14.1741,6.159,2015,True,,,True
+economy,,2016-25,2016,2025,Paraguay,PRY,UM,UM,True,10,2.2573,7.013,2025,True,,,True
+economy,,1988-95,1988,1995,Peru,PER,UM,LM,True,8,9.9752,22.015,1990,True,,,True
+economy,,1996-2005,1996,2005,Peru,PER,UM,LM,True,10,4.1134,28.101,2005,True,,,True
+economy,,2006-15,2006,2015,Peru,PER,UM,LM,True,10,11.146,30.458,2015,True,,,True
+economy,,2016-25,2016,2025,Peru,PER,UM,UM,True,10,5.5931,34.577,2025,True,,,True
+economy,,1988-95,1988,1995,Philippines,PHL,UM,LM,True,8,6.4272,62.855,1990,True,,,True
+economy,,1996-2005,1996,2005,Philippines,PHL,UM,LM,True,10,1.367,88.016,2005,True,,,True
+economy,,2006-15,2006,2015,Philippines,PHL,UM,LM,True,10,8.6698,105.313,2015,True,,,True
+economy,,2016-25,2016,2025,Philippines,PHL,UM,LM,True,10,4.5485,116.787,2025,True,,,True
+economy,,1988-95,1988,1995,Samoa,WSM,UM,LM,True,8,2.9752,0.169,1990,True,,,True
+economy,,1996-2005,1996,2005,Samoa,WSM,UM,LM,True,10,2.2148,0.187,2005,True,,,True
+economy,,2006-15,2006,2015,Samoa,WSM,UM,LM,True,10,5.4271,0.202,2015,True,,,True
+economy,,2016-25,2016,2025,Samoa,WSM,UM,LM,True,10,3.6436,0.219,2025,True,,,True
+economy,,1988-95,1988,1995,Senegal,SEN,LM,LM,True,8,-1.087,7.721,1990,True,,,True
+economy,,1996-2005,1996,2005,Senegal,SEN,LM,L,False,10,-1.5045,11.235,2005,True,,,True
+economy,,2006-15,2006,2015,Senegal,SEN,LM,L,False,10,1.8771,14.593,2015,True,,,True
+economy,,2016-25,2016,2025,Senegal,SEN,LM,L,False,10,2.3822,18.932,2025,True,,,True
+economy,,1988-95,1988,1995,Serbia,SRB,UM,,False,0,,7.898,1990,False,,,False
+economy,,1996-2005,1996,2005,Serbia,SRB,UM,,False,8,0.0096,7.441,2005,False,,,False
+economy,,2006-15,2006,2015,Serbia,SRB,UM,,False,10,1.9871,7.095,2015,False,,,False
+economy,,2016-25,2016,2025,Serbia,SRB,UM,UM,True,10,9.9648,6.549,2025,False,,,False
+economy,,1988-95,1988,1995,Solomon Islands,SLB,LM,L,False,8,6.9048,0.331,1990,True,,,True
+economy,,1996-2005,1996,2005,Solomon Islands,SLB,LM,LM,True,10,-3.1239,0.483,2005,True,,,True
+economy,,2006-15,2006,2015,Solomon Islands,SLB,LM,L,False,10,5.8397,0.639,2015,True,,,True
+economy,,2016-25,2016,2025,Solomon Islands,SLB,LM,LM,True,10,-0.995,0.839,2025,True,,,True
+economy,,1988-95,1988,1995,South Africa,ZAF,UM,LM,True,8,5.05,40.746,1990,True,,,True
+economy,,1996-2005,1996,2005,South Africa,ZAF,UM,UM,True,10,-1.1338,49.49,2005,True,,,True
+economy,,2006-15,2006,2015,South Africa,ZAF,UM,UM,True,10,3.0026,56.724,2015,True,,,True
+economy,,2016-25,2016,2025,South Africa,ZAF,UM,UM,True,10,1.0542,64.747,2025,True,,,True
+economy,,1988-95,1988,1995,Sri Lanka,LKA,UM,L,False,8,7.0647,16.352,1990,True,,,True
+economy,,1996-2005,1996,2005,Sri Lanka,LKA,UM,L,False,10,4.585,20.217,2005,True,,,True
+economy,,2006-15,2006,2015,Sri Lanka,LKA,UM,LM,True,10,13.2284,20.97,2015,True,,,True
+economy,,2016-25,2016,2025,Sri Lanka,LKA,UM,LM,True,10,2.8158,21.756,2025,True,,,True
+economy,,1988-95,1988,1995,St. Lucia,LCA,UM,LM,True,8,4.414,0.138,1990,True,,,True
+economy,,1996-2005,1996,2005,St. Lucia,LCA,UM,UM,True,10,4.0449,0.165,2005,True,,,True
+economy,,2006-15,2006,2015,St. Lucia,LCA,UM,UM,True,10,2.5709,0.175,2015,True,,,True
+economy,,2016-25,2016,2025,St. Lucia,LCA,UM,UM,True,10,6.0856,0.18,2025,True,,,True
+economy,,1988-95,1988,1995,St. Vincent and the Grenadines,VCT,UM,LM,True,8,5.3733,0.112,1990,True,,,True
+economy,,1996-2005,1996,2005,St. Vincent and the Grenadines,VCT,UM,LM,True,10,6.6892,0.112,2005,True,,,True
+economy,,2006-15,2006,2015,St. Vincent and the Grenadines,VCT,UM,UM,True,10,3.7567,0.107,2015,True,,,True
+economy,,2016-25,2016,2025,St. Vincent and the Grenadines,VCT,UM,UM,True,10,6.1256,0.1,2025,True,,,True
+economy,,1988-95,1988,1995,Suriname,SUR,UM,UM,True,8,-6.397,0.412,1990,True,,,True
+economy,,1996-2005,1996,2005,Suriname,SUR,UM,LM,True,10,12.7086,0.519,2005,True,,,True
+economy,,2006-15,2006,2015,Suriname,SUR,UM,LM,True,10,8.6385,0.582,2015,True,,,True
+economy,,2016-25,2016,2025,Suriname,SUR,UM,UM,True,10,1.9497,0.64,2025,True,,,True
+economy,,1988-95,1988,1995,São Tomé and Príncipe,STP,LM,L,False,8,-1.2195,0.123,1990,True,,,True
+economy,,1996-2005,1996,2005,São Tomé and Príncipe,STP,LM,L,False,10,1.5828,0.162,2005,True,,,True
+economy,,2006-15,2006,2015,São Tomé and Príncipe,STP,LM,L,False,10,5.4851,0.2,2015,True,,,True
+economy,,2016-25,2016,2025,São Tomé and Príncipe,STP,LM,LM,True,10,9.1979,0.24,2025,True,,,True
+economy,,1988-95,1988,1995,Tajikistan,TJK,LM,,False,3,,5.399,1990,False,,,False
+economy,,1996-2005,1996,2005,Tajikistan,TJK,LM,L,False,10,3.125,6.925,2005,False,,,False
+economy,,2006-15,2006,2015,Tajikistan,TJK,LM,L,False,10,14.0221,8.644,2015,False,,,False
+economy,,2016-25,2016,2025,Tajikistan,TJK,LM,LM,True,10,3.9706,10.787,2025,False,,,False
+economy,,1988-95,1988,1995,Tanzania,TZA,LM,L,False,8,-5.9231,26.11,1990,True,,,True
+economy,,1996-2005,1996,2005,Tanzania,TZA,LM,L,False,10,6.7492,39.182,2005,True,,,True
+economy,,2006-15,2006,2015,Tanzania,TZA,LM,L,False,10,7.6105,52.021,2015,True,,,True
+economy,,2016-25,2016,2025,Tanzania,TZA,LM,L,False,10,2.4564,70.546,2025,True,,,True
+economy,,1988-95,1988,1995,Thailand,THA,UM,LM,True,8,12.6504,54.738,1990,True,,,True
+economy,,1996-2005,1996,2005,Thailand,THA,UM,LM,True,10,0.5102,66.017,2005,True,,,True
+economy,,2006-15,2006,2015,Thailand,THA,UM,LM,True,10,9.1931,70.541,2015,True,,,True
+economy,,2016-25,2016,2025,Thailand,THA,UM,UM,True,10,2.2199,71.62,2025,True,,,True
+economy,,1988-95,1988,1995,Timor-Leste,TLS,LM,,False,3,,0.76,1990,False,,,False
+economy,,1996-2005,1996,2005,Timor-Leste,TLS,LM,,False,10,7.8201,0.948,2005,False,,,False
+economy,,2006-15,2006,2015,Timor-Leste,TLS,LM,L,False,10,8.2758,1.205,2015,False,,,False
+economy,,2016-25,2016,2025,Timor-Leste,TLS,LM,LM,True,10,-2.9659,1.419,2025,False,,,False
+economy,,1988-95,1988,1995,Togo,TGO,LM,L,False,8,-0.8621,3.714,1990,True,,,True
+economy,,1996-2005,1996,2005,Togo,TGO,LM,L,False,10,1.1628,5.413,2005,True,,,True
+economy,,2006-15,2006,2015,Togo,TGO,LM,L,False,10,3.0973,7.072,2015,True,,,True
+economy,,2016-25,2016,2025,Togo,TGO,LM,L,False,10,4.2853,8.592,2025,True,,,True
+economy,,1988-95,1988,1995,Tonga,TON,UM,LM,True,8,8.6224,0.1,1990,True,,,True
+economy,,1996-2005,1996,2005,Tonga,TON,UM,LM,True,10,-1.6741,0.106,2005,True,,,True
+economy,,2006-15,2006,2015,Tonga,TON,UM,LM,True,10,6.0376,0.106,2015,True,,,True
+economy,,2016-25,2016,2025,Tonga,TON,UM,LM,True,10,4.5564,0.104,2025,True,,,True
+economy,,1988-95,1988,1995,Tunisia,TUN,LM,LM,True,8,4.1822,8.325,1990,True,,,True
+economy,,1996-2005,1996,2005,Tunisia,TUN,LM,LM,True,10,6.3966,10.255,2005,True,,,True
+economy,,2006-15,2006,2015,Tunisia,TUN,LM,LM,True,10,3.8324,11.402,2015,True,,,True
+economy,,2016-25,2016,2025,Tunisia,TUN,LM,LM,True,10,-0.5141,12.349,2025,True,,,True
+economy,,1988-95,1988,1995,Turkmenistan,TKM,UM,,False,5,,3.761,1990,False,,,False
+economy,,1996-2005,1996,2005,Turkmenistan,TKM,UM,LM,True,10,8.747,5.052,2005,False,,,False
+economy,,2006-15,2006,2015,Turkmenistan,TKM,UM,LM,True,10,16.5476,6.216,2015,False,,,False
+economy,,2016-25,2016,2025,Turkmenistan,TKM,UM,UM,True,10,-2.1933,7.619,2025,False,,,False
+economy,,1988-95,1988,1995,Tuvalu,TUV,UM,,False,8,6.3819,0.009,1990,True,,,True
+economy,,1996-2005,1996,2005,Tuvalu,TUV,UM,,False,10,7.6116,0.01,2005,True,,,True
+economy,,2006-15,2006,2015,Tuvalu,TUV,UM,,False,10,2.8212,0.011,2015,True,,,True
+economy,,2016-25,2016,2025,Tuvalu,TUV,UM,UM,True,10,3.4293,0.009,2025,True,,,True
+economy,,1988-95,1988,1995,Türkiye,TUR,UM,LM,True,8,9.6525,56.016,1990,True,,,True
+economy,,1996-2005,1996,2005,Türkiye,TUR,UM,LM,True,10,8.3235,69.33,2005,True,,,True
+economy,,2006-15,2006,2015,Türkiye,TUR,UM,UM,True,10,6.888,78.218,2015,True,,,True
+economy,,2016-25,2016,2025,Türkiye,TUR,UM,UM,True,10,2.2029,85.879,2025,True,,,True
+economy,,1988-95,1988,1995,Ukraine,UKR,UM,,False,6,,52.054,1990,False,,,False
+economy,,1996-2005,1996,2005,Ukraine,UKR,UM,LM,True,10,3.3687,47.586,2005,False,,,False
+economy,,2006-15,2006,2015,Ukraine,UKR,UM,LM,True,10,7.3695,45.785,2015,False,,,False
+economy,,2016-25,2016,2025,Ukraine,UKR,UM,LM,True,10,6.6524,38.98,2025,False,,,False
+economy,,1988-95,1988,1995,Uzbekistan,UZB,LM,,False,5,,20.465,1990,False,,,False
+economy,,1996-2005,1996,2005,Uzbekistan,UZB,LM,LM,True,10,0.8621,26.357,2005,False,,,False
+economy,,2006-15,2006,2015,Uzbekistan,UZB,LM,L,False,10,22.6117,30.749,2015,False,,,False
+economy,,2016-25,2016,2025,Uzbekistan,UZB,LM,LM,True,10,5.9082,37.053,2025,False,,,False
+economy,,1988-95,1988,1995,Vanuatu,VUT,LM,LM,True,8,3.8081,0.148,1990,True,,,True
+economy,,1996-2005,1996,2005,Vanuatu,VUT,LM,LM,True,10,4.0245,0.211,2005,True,,,True
+economy,,2006-15,2006,2015,Vanuatu,VUT,LM,LM,True,10,5.2151,0.266,2015,True,,,True
+economy,,2016-25,2016,2025,Vanuatu,VUT,LM,LM,True,10,5.0453,0.335,2025,True,,,True
+economy,,1988-95,1988,1995,"Venezuela, RB",VEN,LM,UM,True,8,1.9432,19.827,1990,True,,,True
+economy,,1996-2005,1996,2005,"Venezuela, RB",VEN,LM,LM,True,10,8.1013,26.786,2005,True,,,True
+economy,,2006-15,2006,2015,"Venezuela, RB",VEN,LM,UM,True,10,7.9498,30.574,2015,True,,,True
+economy,,2016-25,2016,2025,"Venezuela, RB",VEN,LM,UM,True,10,-2.282,28.517,2025,True,,,True
+economy,,1988-95,1988,1995,Viet Nam,VNM,UM,L,False,6,,65.505,1990,False,,,False
+economy,,1996-2005,1996,2005,Viet Nam,VNM,UM,L,False,10,8.5167,81.088,2005,False,,,False
+economy,,2006-15,2006,2015,Viet Nam,VNM,UM,L,False,10,15.0312,92.823,2015,False,,,False
+economy,,2016-25,2016,2025,Viet Nam,VNM,UM,LM,True,10,6.5708,101.599,2025,False,,,False
+economy,,1988-95,1988,1995,West Bank and Gaza,PSE,LM,,False,0,,1.978,1990,False,,,False
+economy,,1996-2005,1996,2005,West Bank and Gaza,PSE,LM,LM,True,9,8.5366,3.32,2005,False,,,False
+economy,,2006-15,2006,2015,West Bank and Gaza,PSE,LM,LM,True,10,9.1969,4.27,2015,False,,,False
+economy,,2016-25,2016,2025,West Bank and Gaza,PSE,LM,LM,True,10,3.5181,5.414,2025,False,,,False
+economy,,1988-95,1988,1995,Zambia,ZMB,LM,L,False,8,4.0185,7.786,1990,True,,,True
+economy,,1996-2005,1996,2005,Zambia,ZMB,LM,L,False,10,2.8175,11.719,2005,True,,,True
+economy,,2006-15,2006,2015,Zambia,ZMB,LM,L,False,10,6.5179,16.399,2015,True,,,True
+economy,,2016-25,2016,2025,Zambia,ZMB,LM,LM,True,10,-2.6324,21.914,2025,True,,,True
+economy,,1988-95,1988,1995,Zimbabwe,ZWE,LM,LM,True,8,-4.0016,10.137,1990,True,,,True
+economy,,1996-2005,1996,2005,Zimbabwe,ZWE,LM,L,False,10,-5.5053,12.483,2005,True,,,True
+economy,,2006-15,2006,2015,Zimbabwe,ZWE,LM,L,False,10,5.4057,14.399,2015,True,,,True
+economy,,2016-25,2016,2025,Zimbabwe,ZWE,LM,L,False,10,10.7815,16.951,2025,True,,,True

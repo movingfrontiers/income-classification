@@ -1,0 +1,21 @@
+row_type,panel,year,group,origin,destination,economies,chart_label,labelled_on_chart,largest_member,population_bn,share_of_classified_pct,start_population_bn,growth_total_bn,growth_before_reclassification_bn,growth_after_reclassification_bn,end_population_bn,population_at_reclassification_bn,notes
+bar,,2000,LIC,,,,,,,2.5316,41.2,,,,,,,
+bar,,2000,MIC,,,,,,,2.7086,44.1,,,,,,,
+bar,,2000,HIC,,,,,,,0.9045,14.7,,,,,,,
+bar,,2025,LIC,,,,,,,0.7675,9.3,,,,,,,
+bar,,2025,MIC,,,,,,,6.0242,73.3,,,,,,,
+bar,,2025,HIC,,,,,,,1.4235,17.3,,,,,,,
+bar,,2050,LIC,,,,,,,0.651,6.7,,,,,,,
+bar,,2050,MIC,,,,,,,5.4029,56.0,,,,,,,
+bar,,2050,HIC,,,,,,,3.5949,37.3,,,,,,,
+ribbon,2000-2025,,,LIC,LIC,23,23 stay LIC,yes,Ethiopia,,,0.3623,0.3796,,,0.7419,,growth includes economies entering the classification
+ribbon,2000-2025,,,LIC,MIC,40,INDIA + 39 -> MIC,yes,India,,,2.1693,0.9747,0.3457,0.6291,3.1441,2.515,
+ribbon,2000-2025,,,MIC,LIC,1,SYRIA -> LIC,no,Syria,,,0.0166,0.009,0.0026,0.0064,0.0256,0.0192,
+ribbon,2000-2025,,,MIC,MIC,61,61 stay MIC,yes,China,,,2.3409,0.5392,,,2.8801,,growth includes economies entering the classification
+ribbon,2000-2025,,,MIC,HIC,28,RUSSIA + 27 -> HIC,yes,Russia,,,0.3511,0.0246,-0.0018,0.0264,0.3757,0.3493,
+ribbon,2000-2025,,,HIC,HIC,52,52 stay HIC,yes,United States,,,0.9045,0.1433,,,1.0478,,growth includes economies entering the classification
+ribbon,2025-2050,,,LIC,LIC,16,16 stay LIC,yes,Sudan,,,0.3932,0.2579,,,0.651,,
+ribbon,2025-2050,,,LIC,MIC,9,ETHIOPIA + 8 -> MIC,yes,Ethiopia,,,0.3743,0.2772,0.0876,0.1896,0.6515,0.4619,
+ribbon,2025-2050,,,MIC,MIC,69,69 stay MIC,yes,India,,,3.7712,0.9802,,,4.7514,,
+ribbon,2025-2050,,,MIC,HIC,37,CHINA + 36 -> HIC,yes,China,,,2.253,-0.0962,0.0296,-0.1258,2.1568,2.2826,
+ribbon,2025-2050,,,HIC,HIC,87,87 stay HIC,yes,United States,,,1.4235,0.0146,,,1.4381,,
