@@ -1,0 +1,28 @@
+Creative Commons Attribution 4.0 International
+
+Copyright (c) 2026 Philip Schellekens
+
+The contents of this folder, being the seven chart-level csv files listed in
+the README, are licensed under a Creative Commons Attribution 4.0
+International Licence.
+
+https://creativecommons.org/licenses/by/4.0/
+
+You are free to share and adapt the material for any purpose, including
+commercially, provided you give appropriate credit.
+
+Suggested citation:
+
+Schellekens, Philip (2026). If the world were a country, it would be a very
+strange one. Moving Frontiers.
+https://movingfrontiers.substack.com/p/the-world-turns-rich-this-year
+
+The underlying panel of 218 economies and the full nowcast method are in the
+folder for the earlier post, under the same licence:
+
+https://github.com/movingfrontiers/income-classification/tree/main/the-great-income-inversion
+
+Source data are World Bank OGHIST and World Development Indicators, and the
+United Nations World Population Prospects 2024, each subject to its own
+terms of use. The nowcast, the assumptions behind it and the derived tables
+are the author's own.
