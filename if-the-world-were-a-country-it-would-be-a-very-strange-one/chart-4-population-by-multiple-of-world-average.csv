@@ -1,0 +1,17 @@
+# chart,"Population by economy GNI per capita relative to the world average, 2026"
+# source,"World Bank WDI, GNI per capita, Atlas method (NY.GNP.PCAP.CD) and population (SP.POP.TOTL); World Bank OGHIST (1 July 2026) for the operational thresholds; UN World Population Prospects 2024, medium variant; author's calculations and projections. Schellekens 2026, The Great Income Inversion, Moving Frontiers."
+# note,"Bands are multiples of world GNI per capita, $14801 in 2026. Population is the sum over economies falling in each band."
+# note,"5.20 billion people, 64 percent of the total, live in an economy below the world average."
+# note,"China is nowcast to cross above the world average in 2026, at 1.01 times, which places its 1.4 billion people in the 1 to 2x band; on 2025 actuals China sat below the line."
+# note,"Every person carries their own country's average, so these are measures of inequality between countries, not within them. A survey-based measure would be considerably wider."
+# note,Values from 2026 reflect a nowcast based on a conservative constant-pace scenario that replicates country-level median per capita income growth over the last decade. See Schellekens 2026 for methodology.
+
+band,lower_bound_multiple,upper_bound_multiple,population_millions,population_billions,share_of_covered_population_percent,n_economies,side_of_world_average
+under 0.1x,0,0.1,1079.83,1.08,13.27,26,below
+0.1 to 0.25x,0.1,0.25,2441.84,2.442,30.01,29,below
+0.25 to 0.5x,0.25,0.5,1047.19,1.047,12.87,36,below
+0.5 to 1x,0.5,1.0,630.84,0.631,7.75,30,below
+1 to 2x,1.0,2.0,1817.42,1.817,22.34,29,above
+2 to 4x,2.0,4.0,570.39,0.57,7.01,26,above
+over 4x,4.0,,549.5,0.549,6.75,21,above
+all bands,,,8137.0,8.137,100.0,197,
