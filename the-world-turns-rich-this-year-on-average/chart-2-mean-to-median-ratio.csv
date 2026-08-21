@@ -1,0 +1,72 @@
+# chart,"Ratio of world GNI per capita to GNI per capita in the median person's country, 1987 to 2050"
+# source,"World Bank WDI, GNI per capita, Atlas method (NY.GNP.PCAP.CD) and population (SP.POP.TOTL); World Bank OGHIST (1 July 2026) for the operational thresholds; UN World Population Prospects 2024, medium variant; author's calculations and projections. Schellekens 2026, The Great Income Inversion, Moving Frontiers."
+# note,The ratio is world GNI per capita divided by GNI per capita in the median person's country. A ratio of one would mean the median person lives in an economy at exactly the world average.
+# note,"Every person carries their own country's average, so these are measures of inequality between countries, not within them. A survey-based measure would be considerably wider."
+# note,Values from 2026 reflect a nowcast based on a conservative constant-pace scenario that replicates country-level median per capita income growth over the last decade. See Schellekens 2026 for methodology.
+# note,The rebound after 2015 follows the dollar-terms collapse across commodity exporters and the handover of the median slot from Thailand through Venezuela to Indonesia.
+
+year,actual_or_nowcast,world_gni_per_capita_usd,median_person_country_gni_per_capita_usd,mean_to_median_ratio,median_person_iso3,median_person_country
+1987,actual,3629.9,360.0,10.083,IND,India
+1988,actual,4282.3,400.0,10.7058,IND,India
+1989,actual,4352.4,390.0,11.16,IND,India
+1990,actual,4485.5,390.0,11.5014,IND,India
+1991,actual,4556.4,360.0,12.6566,CHN,China
+1992,actual,4790.6,400.0,11.9764,CHN,China
+1993,actual,4850.6,420.0,11.5489,CHN,China
+1994,actual,5053.9,470.0,10.753,CHN,China
+1995,actual,5366.2,540.0,9.9374,CHN,China
+1996,actual,5627.7,660.0,8.5268,CHN,China
+1997,actual,5679.2,760.0,7.4726,CHN,China
+1998,actual,5425.1,800.0,6.7814,CHN,China
+1999,actual,5422.9,860.0,6.3057,CHN,China
+2000,actual,5609.2,950.0,5.9045,CHN,China
+2001,actual,5583.7,1020.0,5.4743,CHN,China
+2002,actual,5523.1,1130.0,4.8877,CHN,China
+2003,actual,5925.7,1300.0,4.5583,CHN,China
+2004,actual,6755.2,1530.0,4.4152,CHN,China
+2005,actual,7489.2,1790.0,4.1839,CHN,China
+2006,actual,7980.7,2090.0,3.8185,CHN,China
+2007,actual,8505.2,2550.0,3.3354,CHN,China
+2008,actual,8943.0,3140.0,2.8481,CHN,China
+2009,actual,8981.8,3740.0,2.4015,CHN,China
+2010,actual,9418.5,4410.0,2.1357,CHN,China
+2011,actual,9891.6,4840.0,2.0437,THA,Thailand
+2012,actual,10479.6,5400.0,1.9407,THA,Thailand
+2013,actual,10846.9,5580.0,1.9439,THA,Thailand
+2014,actual,10951.9,5620.0,1.9487,THA,Thailand
+2015,actual,10597.4,5280.0,2.0071,VEN,"Venezuela, RB"
+2016,actual,10351.9,4180.0,2.4765,GEO,Georgia
+2017,actual,10422.5,4110.0,2.5359,AZE,Azerbaijan
+2018,actual,11126.9,4190.0,2.6556,PSE,West Bank and Gaza
+2019,actual,11604.1,4220.0,2.7498,LKA,Sri Lanka
+2020,actual,11153.4,3850.0,2.897,IDN,Indonesia
+2021,actual,12266.0,4130.0,2.97,IDN,Indonesia
+2022,actual,13063.4,4520.0,2.8901,IDN,Indonesia
+2023,actual,13436.2,4810.0,2.7934,IDN,Indonesia
+2024,actual,13534.8,4920.0,2.751,IDN,Indonesia
+2025,actual,14346.2,5120.0,2.802,IDN,Indonesia
+2026,nowcast,14801.2,5365.2,2.7588,IDN,Indonesia
+2027,nowcast,15277.8,5622.1,2.7175,IDN,Indonesia
+2028,nowcast,15773.6,5891.3,2.6774,IDN,Indonesia
+2029,nowcast,16289.1,6173.4,2.6386,IDN,Indonesia
+2030,nowcast,16825.4,6327.3,2.6592,DZA,Algeria
+2031,nowcast,17383.7,6333.6,2.7447,PHL,Philippines
+2032,nowcast,17965.4,6621.6,2.7131,PHL,Philippines
+2033,nowcast,18572.0,6851.1,2.7108,BOL,Bolivia
+2034,nowcast,19204.5,6736.9,2.8506,DZA,Algeria
+2035,nowcast,19864.0,6843.4,2.9026,DZA,Algeria
+2036,nowcast,20551.6,6900.7,2.9782,UZB,Uzbekistan
+2037,nowcast,21269.3,6915.6,3.0756,JOR,Jordan
+2038,nowcast,22018.6,7243.6,3.0397,BGD,Bangladesh
+2039,nowcast,22800.4,7784.5,2.9289,BGD,Bangladesh
+2040,nowcast,23616.2,8090.8,2.9189,KHM,Cambodia
+2041,nowcast,24468.0,8420.8,2.9056,ZWE,Zimbabwe
+2042,nowcast,25358.0,7975.5,3.1795,IND,India
+2043,nowcast,26287.6,8489.1,3.0966,IND,India
+2044,nowcast,27258.2,9035.9,3.0167,IND,India
+2045,nowcast,28272.1,9617.9,2.9395,IND,India
+2046,nowcast,29331.1,10237.4,2.8651,IND,India
+2047,nowcast,30437.2,10896.8,2.7932,IND,India
+2048,nowcast,31593.1,11598.6,2.7239,IND,India
+2049,nowcast,32800.9,12345.7,2.6569,IND,India
+2050,nowcast,34063.5,13140.9,2.5922,IND,India

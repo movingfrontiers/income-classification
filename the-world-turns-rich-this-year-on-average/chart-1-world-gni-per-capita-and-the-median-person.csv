@@ -1,0 +1,73 @@
+# chart,"World GNI per capita and the income of the median person's country, 1987 to 2050"
+# source,"World Bank WDI, GNI per capita, Atlas method (NY.GNP.PCAP.CD) and population (SP.POP.TOTL); World Bank OGHIST (1 July 2026) for the operational thresholds; UN World Population Prospects 2024, medium variant; author's calculations and projections. Schellekens 2026, The Great Income Inversion, Moving Frontiers."
+# note,"World GNI per capita is world GNI divided by world population, the population-weighted mean across economies."
+# note,"The median person's country is the economy at which cumulative population, economies ranked ascending by GNI per capita, first reaches half the covered total. It is that country's average income, not a person-level median."
+# note,"Every person carries their own country's average, so these are measures of inequality between countries, not within them. A survey-based measure would be considerably wider."
+# note,Values from 2026 reflect a nowcast based on a conservative constant-pace scenario that replicates country-level median per capita income growth over the last decade. See Schellekens 2026 for methodology.
+# note,Thresholds are the World Bank operational thresholds for the classification; the four shaded bands on the chart are bounded by them.
+
+year,actual_or_nowcast,world_gni_per_capita_usd,median_person_country_gni_per_capita_usd,median_person_iso3,median_person_country,n_economies,n_economies_with_population,covered_population_millions,threshold_lic_lmic_usd,threshold_lmic_umic_usd,threshold_umic_hic_usd
+1987,actual,3629.9,360.0,IND,India,159,159,4404.9,480.0,1940.0,6000.0
+1988,actual,4282.3,400.0,IND,India,160,160,4487.2,545.0,2200.0,6000.0
+1989,actual,4352.4,390.0,IND,India,163,163,4685.8,580.0,2335.0,6000.0
+1990,actual,4485.5,390.0,IND,India,168,168,4802.9,610.0,2465.0,7620.0
+1991,actual,4556.4,360.0,CHN,China,169,169,5035.8,635.0,2555.0,7910.0
+1992,actual,4790.6,400.0,CHN,China,184,184,5254.6,675.0,2695.0,8355.0
+1993,actual,4850.6,420.0,CHN,China,186,186,5368.1,695.0,2785.0,8625.0
+1994,actual,5053.9,470.0,CHN,China,187,187,5451.2,725.0,2895.0,8955.0
+1995,actual,5366.2,540.0,CHN,China,188,188,5533.9,765.0,3035.0,9385.0
+1996,actual,5627.7,660.0,CHN,China,189,189,5618.4,785.0,3115.0,9645.0
+1997,actual,5679.2,760.0,CHN,China,192,192,5713.7,785.0,3125.0,9655.0
+1998,actual,5425.1,800.0,CHN,China,192,192,5795.0,760.0,3030.0,9360.0
+1999,actual,5422.9,860.0,CHN,China,194,194,5880.2,755.0,2995.0,9265.0
+2000,actual,5609.2,950.0,CHN,China,194,194,5959.5,755.0,2995.0,9265.0
+2001,actual,5583.7,1020.0,CHN,China,192,192,6038.0,745.0,2975.0,9205.0
+2002,actual,5523.1,1130.0,CHN,China,193,193,6136.5,735.0,2935.0,9075.0
+2003,actual,5925.7,1300.0,CHN,China,193,193,6214.4,765.0,3035.0,9385.0
+2004,actual,6755.2,1530.0,CHN,China,193,193,6292.9,825.0,3255.0,10065.0
+2005,actual,7489.2,1790.0,CHN,China,195,195,6371.8,875.0,3465.0,10725.0
+2006,actual,7980.7,2090.0,CHN,China,195,195,6451.2,905.0,3595.0,11115.0
+2007,actual,8505.2,2550.0,CHN,China,195,195,6530.9,935.0,3705.0,11455.0
+2008,actual,8943.0,3140.0,CHN,China,195,195,6769.5,975.0,3855.0,11905.0
+2009,actual,8981.8,3740.0,CHN,China,195,195,6854.9,995.0,3945.0,12195.0
+2010,actual,9418.5,4410.0,CHN,China,198,198,6940.9,1005.0,3975.0,12275.0
+2011,actual,9891.6,4840.0,THA,Thailand,200,200,7036.3,1025.0,4035.0,12475.0
+2012,actual,10479.6,5400.0,THA,Thailand,199,199,7122.8,1035.0,4085.0,12615.0
+2013,actual,10846.9,5580.0,THA,Thailand,199,199,7211.5,1045.0,4125.0,12745.0
+2014,actual,10951.9,5620.0,THA,Thailand,200,200,7299.4,1045.0,4125.0,12735.0
+2015,actual,10597.4,5280.0,VEN,"Venezuela, RB",201,201,7387.8,1025.0,4035.0,12475.0
+2016,actual,10351.9,4180.0,GEO,Georgia,200,200,7463.9,1005.0,3955.0,12235.0
+2017,actual,10422.5,4110.0,AZE,Azerbaijan,201,201,7549.9,995.0,3895.0,12055.0
+2018,actual,11126.9,4190.0,PSE,West Bank and Gaza,201,201,7632.2,1025.0,3995.0,12375.0
+2019,actual,11604.1,4220.0,LKA,Sri Lanka,202,202,7678.0,1035.0,4045.0,12535.0
+2020,actual,11153.4,3850.0,IDN,Indonesia,201,201,7742.1,1045.0,4095.0,12695.0
+2021,actual,12266.0,4130.0,IDN,Indonesia,201,201,7806.6,1085.0,4255.0,13205.0
+2022,actual,13063.4,4520.0,IDN,Indonesia,201,201,7874.5,1135.0,4465.0,13845.0
+2023,actual,13436.2,4810.0,IDN,Indonesia,200,200,7923.4,1145.0,4515.0,14005.0
+2024,actual,13534.8,4920.0,IDN,Indonesia,198,198,7998.4,1135.0,4495.0,13935.0
+2025,actual,14346.2,5120.0,IDN,Indonesia,182,182,7996.7,1175.0,4635.0,14375.0
+2026,nowcast,14801.2,5365.2,IDN,Indonesia,197,197,8137.0,1189.6,4692.7,14553.8
+2027,nowcast,15277.8,5622.1,IDN,Indonesia,197,197,8203.2,1204.4,4751.0,14734.9
+2028,nowcast,15773.6,5891.3,IDN,Indonesia,197,197,8268.6,1219.4,4810.1,14918.2
+2029,nowcast,16289.1,6173.4,IDN,Indonesia,197,197,8333.2,1234.6,4870.0,15103.8
+2030,nowcast,16825.4,6327.3,DZA,Algeria,197,197,8397.0,1249.9,4930.6,15291.6
+2031,nowcast,17383.7,6333.6,PHL,Philippines,197,197,8460.0,1265.5,4991.9,15481.9
+2032,nowcast,17965.4,6621.6,PHL,Philippines,197,197,8522.2,1281.2,5054.0,15674.5
+2033,nowcast,18572.0,6851.1,BOL,Bolivia,197,197,8583.5,1297.2,5116.9,15869.5
+2034,nowcast,19204.5,6736.9,DZA,Algeria,197,197,8644.0,1313.3,5180.5,16066.9
+2035,nowcast,19864.0,6843.4,DZA,Algeria,197,197,8703.6,1329.6,5245.0,16266.8
+2036,nowcast,20551.6,6900.7,UZB,Uzbekistan,197,197,8762.4,1346.2,5310.2,16469.1
+2037,nowcast,21269.3,6915.6,JOR,Jordan,197,197,8820.1,1362.9,5376.3,16674.0
+2038,nowcast,22018.6,7243.6,BGD,Bangladesh,197,197,8876.9,1379.9,5443.2,16881.4
+2039,nowcast,22800.4,7784.5,BGD,Bangladesh,197,197,8932.6,1397.0,5510.9,17091.4
+2040,nowcast,23616.2,8090.8,KHM,Cambodia,197,197,8987.3,1414.4,5579.4,17304.0
+2041,nowcast,24468.0,8420.8,ZWE,Zimbabwe,197,197,9040.8,1432.0,5648.8,17519.3
+2042,nowcast,25358.0,7975.5,IND,India,197,197,9093.1,1449.8,5719.1,17737.2
+2043,nowcast,26287.6,8489.1,IND,India,197,197,9144.2,1467.9,5790.2,17957.9
+2044,nowcast,27258.2,9035.9,IND,India,197,197,9193.9,1486.1,5862.3,18181.3
+2045,nowcast,28272.1,9617.9,IND,India,197,197,9242.3,1504.6,5935.2,18407.5
+2046,nowcast,29331.1,10237.4,IND,India,197,197,9289.1,1523.3,6009.0,18636.4
+2047,nowcast,30437.2,10896.8,IND,India,197,197,9334.4,1542.3,6083.8,18868.3
+2048,nowcast,31593.1,11598.6,IND,India,197,197,9378.0,1561.5,6159.5,19103.0
+2049,nowcast,32800.9,12345.7,IND,India,197,197,9419.9,1580.9,6236.1,19340.6
+2050,nowcast,34063.5,13140.9,IND,India,197,197,9460.2,1600.6,6313.7,19581.2
