@@ -1,7 +1,0 @@
-year,built_from,group,group_name,group_population_bn,already_in_group_bn,already_in_group_pct,arrived_by_upward_reclassification_bn,arrived_by_upward_reclassification_pct,population_growth_bn,population_growth_pct,economies_already_in_group,economies_arrived_upward,memo_incumbents_at_start_bn,memo_incumbent_growth_bn,memo_arrivals_at_start_bn,memo_arrivals_growth_before_move_bn,memo_arrivals_growth_after_move_bn,memo_downward_arrivals_at_move_bn,memo_downward_arrivals_growth_bn
-2025,2000,LIC,Low income,0.7675,0.3815,49.7,0.0,0.0,0.386,50.3,24,0,0.3623,0.3796,0.0,0.0,0.0,0.0192,0.0064
-2025,2000,MIC,Middle income,6.0242,2.3409,38.9,2.515,41.7,1.1683,19.4,61,40,2.3409,0.5392,2.1693,0.3457,0.6291,0.0,0.0
-2025,2000,HIC,High income,1.4235,0.9045,63.5,0.3493,24.5,0.1697,11.9,52,28,0.9045,0.1433,0.3511,-0.0018,0.0264,0.0,0.0
-2050,2025,LIC,Low income,0.651,0.3932,60.4,0.0,0.0,0.2579,39.6,16,0,0.3932,0.2579,0.0,0.0,0.0,0.0,0.0
-2050,2025,MIC,Middle income,5.4029,3.7712,69.8,0.4619,8.6,1.1698,21.7,69,9,3.7712,0.9802,0.3743,0.0876,0.1896,0.0,0.0
-2050,2025,HIC,High income,3.5949,1.4235,39.6,2.2826,63.5,-0.1113,-3.1,87,37,1.4235,0.0146,2.253,0.0296,-0.1258,0.0,0.0
