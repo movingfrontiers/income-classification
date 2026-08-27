@@ -1,0 +1,206 @@
+# chart,"Every economy as a multiple of world GNI per capita, 2026"
+# source,"World Bank WDI, GNI per capita, Atlas method (NY.GNP.PCAP.CD) and population (SP.POP.TOTL); World Bank OGHIST (1 July 2026) for the operational thresholds; UN World Population Prospects 2024, medium variant; author's calculations and projections. Schellekens 2026, The Great Income Inversion, Moving Frontiers."
+# note,World GNI per capita is $14801 in 2026. The ratio column is each economy's GNI per capita divided by that.
+# note,Burundi at 0.016 times and Bermuda at 9.72 times span a 592-fold range.
+# note,Bubble area on the chart follows a logarithmic population scale; economies under ten million people are drawn at a fixed minimum size. The bubble_area column reproduces it.
+# note,"Every person carries their own country's average, so these are measures of inequality between countries, not within them. A survey-based measure would be considerably wider."
+# note,Values from 2026 reflect a nowcast based on a conservative constant-pace scenario that replicates country-level median per capita income growth over the last decade. See Schellekens 2026 for methodology.
+
+rank_poorest_to_richest,iso3,economy,gni_per_capita_usd,ratio_to_world_average,population_millions,bubble_area,side_of_world_average
+1,BDI,Burundi,243.0,0.0164,14.729,10.4,below
+2,AFG,Afghanistan,394.9,0.0267,45.047,47.7,below
+3,MDG,Madagascar,577.3,0.039,33.522,27.9,below
+4,CAF,Central African Republic,578.6,0.0391,5.699,10.0,below
+5,MOZ,Mozambique,581.1,0.0393,36.64,32.8,below
+6,MWI,Malawi,611.2,0.0413,22.786,14.9,below
+7,SOM,"Somalia, Fed. Rep.",661.0,0.0447,20.306,12.9,below
+8,COD,"Congo, Dem. Rep.",752.0,0.0508,116.452,209.0,below
+9,NER,Niger,769.5,0.052,28.815,21.4,below
+10,SLE,Sierra Leone,840.3,0.0568,8.997,10.0,below
+11,LBR,Liberia,856.6,0.0579,5.854,10.0,below
+12,SDN,Sudan,911.2,0.0616,53.283,64.0,below
+13,GMB,"Gambia, The",979.5,0.0662,2.884,10.0,below
+14,TCD,Chad,982.1,0.0664,21.56,13.8,below
+15,BFA,Burkina Faso,1005.4,0.0679,24.602,16.6,below
+16,MLI,Mali,1149.2,0.0776,25.932,18.0,below
+17,GNB,Guinea-Bissau,1150.6,0.0777,2.298,10.0,below
+18,UGA,Uganda,1167.2,0.0789,52.761,63.0,below
+19,ETH,Ethiopia,1172.1,0.0792,138.902,262.0,below
+20,RWA,Rwanda,1214.3,0.082,14.89,10.4,below
+21,ZMB,Zambia,1214.9,0.0821,22.522,14.6,below
+22,LSO,Lesotho,1295.9,0.0876,2.389,10.0,below
+23,TZA,Tanzania,1301.2,0.0879,72.564,106.1,below
+24,MMR,Myanmar,1336.4,0.0903,55.185,68.0,below
+25,NGA,Nigeria,1376.9,0.093,242.432,494.0,below
+26,TGO,Togo,1407.9,0.0951,8.777,10.0,below
+27,TLS,Timor-Leste,1528.8,0.1033,1.437,10.0,below
+28,PAK,Pakistan,1564.1,0.1057,259.3,529.6,below
+29,NPL,Nepal,1657.3,0.112,29.629,22.4,below
+30,BEN,Benin,1658.7,0.1121,15.17,10.5,below
+31,SEN,Senegal,1822.4,0.1231,19.367,12.3,below
+32,GIN,Guinea,1859.2,0.1256,15.442,10.6,below
+33,CMR,Cameroon,1895.7,0.1281,30.641,23.8,below
+34,COM,Comoros,2000.7,0.1352,0.899,10.0,below
+35,SLB,Solomon Islands,2045.1,0.1382,0.858,10.0,below
+36,HTI,Haiti,2048.2,0.1384,12.038,10.0,below
+37,TJK,Tajikistan,2162.6,0.1461,10.979,10.0,below
+38,LAO,Lao PDR,2189.3,0.1479,7.974,10.0,below
+39,MRT,Mauritania,2288.7,0.1546,5.461,10.0,below
+40,COG,"Congo, Rep.",2311.2,0.1561,6.638,10.0,below
+41,KEN,Kenya,2322.2,0.1569,58.636,75.3,below
+42,GHA,Ghana,2705.5,0.1828,35.698,31.3,below
+43,ZWE,Zimbabwe,2858.7,0.1931,17.274,11.2,below
+44,AGO,Angola,2895.6,0.1956,40.215,38.9,below
+45,CIV,Côte d'Ivoire,2895.9,0.1957,33.494,27.9,below
+46,PNG,Papua New Guinea,2926.0,0.1977,10.948,10.0,below
+47,IND,India,2937.8,0.1985,1476.626,2237.5,below
+48,KHM,Cambodia,2955.1,0.1997,18.051,11.6,below
+49,NIC,Nicaragua,2964.5,0.2003,7.097,10.0,below
+50,KGZ,Kyrgyz Republic,3009.1,0.2033,7.449,10.0,below
+51,BGD,Bangladesh,3052.1,0.2062,177.818,351.8,below
+52,EGY,"Egypt, Arab Rep.",3300.6,0.223,120.101,217.7,below
+53,PSE,West Bank and Gaza,3364.3,0.2273,5.514,10.0,below
+54,HND,Honduras,3449.3,0.233,11.185,10.0,below
+55,LBN,Lebanon,3604.3,0.2435,5.897,10.0,below
+56,SWZ,Eswatini,3796.6,0.2565,1.27,10.0,below
+57,UZB,Uzbekistan,3886.8,0.2626,37.724,34.6,below
+58,VEN,"Venezuela, RB",3908.0,0.264,28.634,21.2,below
+59,STP,São Tomé and Príncipe,4083.8,0.2759,0.245,10.0,below
+60,KIR,Kiribati,4103.1,0.2772,0.138,10.0,below
+61,DJI,Djibouti,4194.9,0.2834,1.199,10.0,below
+62,TUN,Tunisia,4353.5,0.2941,12.415,10.1,below
+63,NAM,Namibia,4394.0,0.2969,3.153,10.0,below
+64,MAR,Morocco,4449.2,0.3006,38.762,36.4,below
+65,BTN,Bhutan,4558.4,0.308,0.802,10.0,below
+66,VUT,Vanuatu,4632.5,0.313,0.343,10.0,below
+67,BOL,Bolivia,4668.9,0.3154,12.749,10.1,below
+68,IRN,"Iran, Islamic Rep.",4707.8,0.3181,93.168,154.0,below
+69,LKA,Sri Lanka,4801.5,0.3244,21.867,14.1,below
+70,FSM,"Micronesia, Fed. Sts.",4903.6,0.3313,0.114,10.0,below
+71,PHL,Philippines,5070.6,0.3426,117.724,212.0,below
+72,VNM,Viet Nam,5296.6,0.3578,102.177,175.2,below
+73,IDN,Indonesia,5365.2,0.3625,287.887,588.6,below
+74,JOR,Jordan,5381.3,0.3636,11.59,10.0,below
+75,SLV,El Salvador,5666.8,0.3829,6.391,10.0,below
+76,IRQ,Iraq,5760.8,0.3892,48.007,53.4,below
+77,WSM,Samoa,5845.5,0.3949,0.221,10.0,below
+78,UKR,Ukraine,5876.5,0.397,39.536,37.7,below
+79,DZA,Algeria,5942.5,0.4015,48.028,53.5,below
+80,GNQ,Equatorial Guinea,5963.3,0.4029,1.984,10.0,below
+81,CPV,Cabo Verde,5970.8,0.4034,0.53,10.0,below
+82,SUR,Suriname,6259.7,0.4229,0.645,10.0,below
+83,ZAF,South Africa,6348.0,0.4289,65.453,90.2,below
+84,TKM,Turkmenistan,6418.9,0.4337,7.737,10.0,below
+85,FJI,Fiji,6435.2,0.4348,0.937,10.0,below
+86,MNG,Mongolia,6662.8,0.4502,3.609,10.0,below
+87,GTM,Guatemala,6726.3,0.4544,18.968,12.1,below
+88,PRY,Paraguay,6902.4,0.4663,7.095,10.0,below
+89,ECU,Ecuador,7008.4,0.4735,18.445,11.8,below
+90,TON,Tonga,7151.7,0.4832,0.103,10.0,below
+91,LBY,Libya,7340.2,0.4959,7.54,10.0,below
+92,BWA,Botswana,7605.6,0.5139,2.603,10.0,below
+93,AZE,Azerbaijan,7723.2,0.5218,10.303,10.0,below
+94,BLZ,Belize,7773.4,0.5252,0.429,10.0,below
+95,THA,Thailand,7860.7,0.5311,71.56,103.9,below
+96,COL,Colombia,8230.7,0.5561,53.936,65.4,below
+97,JAM,Jamaica,8257.6,0.5579,2.833,10.0,below
+98,GAB,Gabon,8307.7,0.5613,2.647,10.0,below
+99,XKX,Kosovo,8458.6,0.5715,1.57,10.0,below
+100,MDA,Moldova,8780.2,0.5932,2.333,10.0,below
+101,PER,Peru,8901.5,0.6014,34.922,30.1,below
+102,GEO,Georgia,9805.5,0.6625,3.934,10.0,below
+103,BLR,Belarus,9822.2,0.6636,9.025,10.0,below
+104,ARM,Armenia,9838.2,0.6647,3.064,10.0,below
+105,MKD,North Macedonia,10071.9,0.6805,1.811,10.0,below
+106,TUV,Tuvalu,10115.4,0.6834,0.009,10.0,below
+107,MHL,Marshall Islands,10288.8,0.6951,0.035,10.0,below
+108,BIH,Bosnia and Herzegovina,10707.1,0.7234,3.114,10.0,below
+109,BRA,Brazil,10849.6,0.733,213.563,431.6,below
+110,DOM,Dominican Republic,11176.7,0.7551,11.61,10.0,below
+111,DMA,Dominica,11252.2,0.7602,0.066,10.0,below
+112,GRD,Grenada,12405.7,0.8382,0.117,10.0,below
+113,MYS,Malaysia,12673.6,0.8563,36.385,32.4,below
+114,VCT,St. Vincent and the Grenadines,12735.1,0.8604,0.099,10.0,below
+115,ALB,Albania,13154.0,0.8887,2.332,10.0,below
+116,MDV,Maldives,13857.2,0.9362,0.532,10.0,below
+117,LCA,St. Lucia,14226.1,0.9611,0.18,10.0,below
+118,MEX,Mexico,14386.3,0.972,132.998,248.1,below
+119,KAZ,Kazakhstan,14487.7,0.9788,21.084,13.5,below
+120,MUS,Mauritius,14583.3,0.9853,1.241,10.0,below
+121,SRB,Serbia,14702.8,0.9934,6.503,10.0,below
+122,CHN,China,14943.3,1.0096,1403.424,2161.3,above
+123,MNE,Montenegro,15433.6,1.0427,0.617,10.0,above
+124,ARG,Argentina,15563.5,1.0515,46.004,49.5,above
+125,TUR,Türkiye,16659.1,1.1255,86.114,137.4,above
+126,RUS,Russian Federation,17104.2,1.1556,142.912,271.3,above
+127,CHL,Chile,17397.5,1.1754,19.946,12.7,above
+128,TTO,Trinidad and Tobago,18780.8,1.2689,1.37,10.0,above
+129,CRI,Costa Rica,18852.9,1.2737,5.175,10.0,above
+130,BGR,Bulgaria,19054.6,1.2874,6.388,10.0,above
+131,PAN,Panama,20073.0,1.3562,4.626,10.0,above
+132,OMN,Oman,20208.8,1.3654,5.671,10.0,above
+133,SYC,Seychelles,20361.2,1.3756,0.125,10.0,above
+134,PLW,Palau,20588.6,1.391,0.018,10.0,above
+135,ROU,Romania,21637.4,1.4619,18.912,12.0,above
+136,NRU,Nauru,22092.5,1.4926,0.012,10.0,above
+137,CUW,Curaçao,23300.5,1.5742,0.156,10.0,above
+138,PYF,French Polynesia,24399.8,1.6485,0.283,10.0,above
+139,HUN,Hungary,25185.4,1.7016,9.468,10.0,above
+140,URY,Uruguay,25192.1,1.702,3.383,10.0,above
+141,ATG,Antigua and Barbuda,25351.6,1.7128,0.095,10.0,above
+142,KNA,St. Kitts and Nevis,25654.3,1.7333,0.047,10.0,above
+143,LVA,Latvia,26069.4,1.7613,1.83,10.0,above
+144,GRC,Greece,26076.8,1.7618,10.37,10.0,above
+145,HRV,Croatia,27178.0,1.8362,3.85,10.0,above
+146,POL,Poland,27349.5,1.8478,36.151,32.0,above
+147,SVK,Slovak Republic,27455.5,1.855,5.391,10.0,above
+148,BRB,Barbados,27810.8,1.879,0.283,10.0,above
+149,PRI,Puerto Rico (U.S.),28279.8,1.9106,3.172,10.0,above
+150,BHR,Bahrain,29188.2,1.972,1.632,10.0,above
+151,GUY,Guyana,30245.9,2.0435,0.841,10.0,above
+152,PRT,Portugal,31092.5,2.1007,10.788,10.0,above
+153,LTU,Lithuania,32686.5,2.2084,2.855,10.0,above
+154,EST,Estonia,33693.4,2.2764,1.353,10.0,above
+155,CZE,Czechia,34870.7,2.3559,10.803,10.0,above
+156,BRN,Brunei Darussalam,35222.8,2.3797,0.47,10.0,above
+157,SAU,Saudi Arabia,36736.8,2.482,37.615,34.4,above
+158,ABW,Aruba,36985.7,2.4988,0.109,10.0,above
+159,SVN,Slovenia,37174.7,2.5116,2.128,10.0,above
+160,CYP,Cyprus,37222.1,2.5148,1.382,10.0,above
+161,ESP,Spain,38088.1,2.5733,49.315,56.0,above
+162,BHS,"Bahamas, The",38542.9,2.604,0.405,10.0,above
+163,JPN,Japan,38816.9,2.6226,122.69,223.8,above
+164,KOR,"Korea, Rep.",39038.9,2.6376,51.618,60.6,above
+165,TCA,Turks and Caicos Islands,39311.6,2.656,0.047,10.0,above
+166,SXM,Sint Maarten (Dutch part),40320.0,2.7241,0.044,10.0,above
+167,ITA,Italy,42603.5,2.8784,58.696,75.4,above
+168,KWT,Kuwait,43376.8,2.9306,4.94,10.0,above
+169,MLT,Malta,43543.9,2.9419,0.584,10.0,above
+170,NZL,New Zealand,47210.1,3.1896,5.361,10.0,above
+171,FRA,France,49441.7,3.3404,68.819,97.7,above
+172,ARE,United Arab Emirates,53945.9,3.6447,11.745,10.0,above
+173,GBR,United Kingdom,55228.6,3.7314,69.867,100.0,above
+174,FIN,Finland,55957.5,3.7806,5.645,10.0,above
+175,CAN,Canada,58034.2,3.9209,42.006,42.1,above
+176,ISR,Israel,58645.2,3.9622,10.262,10.0,above
+177,DEU,Germany,61295.1,4.1412,83.063,130.3,above
+178,AUT,Austria,61491.8,4.1545,9.202,10.0,above
+179,BEL,Belgium,61503.9,4.1553,11.958,10.0,above
+180,SWE,Sweden,63793.8,4.3101,10.641,10.0,above
+181,HKG,"Hong Kong SAR, China",65305.0,4.4121,7.481,10.0,above
+182,AUS,Australia,65836.3,4.448,27.873,20.2,above
+183,NLD,Netherlands,69875.0,4.7209,18.188,11.6,above
+184,MAC,"Macao SAR, China",73766.3,4.9838,0.687,10.0,above
+185,FRO,Faeroe Islands,74029.6,5.0016,0.055,10.0,above
+186,QAT,Qatar,75254.7,5.0844,3.027,10.0,above
+187,DNK,Denmark,78655.6,5.3141,6.03,10.0,above
+188,SGP,Singapore,84601.6,5.7159,6.148,10.0,above
+189,CYM,Cayman Islands,87792.8,5.9315,0.077,10.0,above
+190,IMN,Isle of Man,88112.7,5.9531,0.084,10.0,above
+191,IRL,Ireland,90633.8,6.1234,5.535,10.0,above
+192,USA,United States,92426.3,6.2445,343.517,698.7,above
+193,ISL,Iceland,95616.1,6.46,0.396,10.0,above
+194,LUX,Luxembourg,97552.7,6.5909,0.694,10.0,above
+195,NOR,Norway,98520.5,6.6563,5.641,10.0,above
+196,CHE,Switzerland,111702.5,7.5469,9.133,10.0,above
+197,BMU,Bermuda,143914.9,9.7232,0.064,10.0,above
