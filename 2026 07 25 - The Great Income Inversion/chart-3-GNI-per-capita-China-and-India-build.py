@@ -1,27 +1,47 @@
-import pandas as pd, numpy as np, json
+# =============================================================================
+# Chart 3: China and India's climb through the income classification, 1990 to 2050
+#
+# Provenance, frozen vintage. Nothing is read from disk or the network.
+#   Thresholds 1990-2025 : World Bank OGHIST, 1 July 2026 release, Thresholds
+#                          worksheet, official values as published, no smoothing.
+#   Classifications      : World Bank OGHIST, 1 July 2026, Country Analytical History.
+#   GNI per capita       : World Bank WDI, July 2026 vintage, Atlas method, current US$.
+#   Vintage freeze date  : 1 July 2026. The chart is pinned to this vintage;
+#                          do not swap the embedded series for a live API call.
+#
+# G_CN and G_IN are the decade-median annual growth rates inherited from the shared
+# upstream projection pipeline that also drives the shares and levels charts, and
+# are embedded here already resolved, at full precision.
+# =============================================================================
+import numpy as np
 import matplotlib; matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from PIL import Image, ImageDraw, ImageFont
 
 OUT=''; FN='chart-3-GNI-per-capita-China-and-India.png'
-RED='#FFFFFF'; TEAL='#141414'          # line colours, chosen to read on every solid band
+LINE_CN='#FFFFFF'; LINE_IN='#141414'   # line colours, chosen to read on every solid band
 BAND={'L':'#C62828','LM':'#F9A825','UM':'#00897B','H':'#283593'}   # solid, as on the shares and levels charts
 INK='#141414'; PAPER='#FFFFFF'
 import matplotlib.patheffects as pe
 PE_W=[pe.Stroke(linewidth=6.4,foreground=INK),pe.Normal()]     # white line, dark outline
 PE_K=[pe.Stroke(linewidth=6.0,foreground=PAPER),pe.Normal()]   # dark line, white outline
-CSV='wdi_gni_per_capita.csv'
-
-TH={int(k):v for k,v in json.load(open('th_full.json')).items()}
+# ---- embedded series, see the provenance header ----
+# GNI per capita, Atlas method, current US$, 1990-2025, WDI July 2026 vintage
+GNI_CN={1990:330.0,1991:360.0,1992:400.0,1993:420.0,1994:470.0,1995:540.0,1996:660.0,1997:760.0,1998:800.0,1999:860.0,2000:950.0,2001:1020.0,2002:1130.0,2003:1300.0,2004:1530.0,2005:1790.0,2006:2090.0,2007:2550.0,2008:3140.0,2009:3740.0,2010:4410.0,2011:5130.0,2012:6010.0,2013:6860.0,2014:7600.0,2015:8040.0,2016:8360.0,2017:8830.0,2018:9720.0,2019:10510.0,2020:10740.0,2021:12220.0,2022:13170.0,2023:13750.0,2024:13660.0,2025:14230.0}
+GNI_IN={1990:390.0,1991:350.0,1992:350.0,1993:330.0,1994:340.0,1995:370.0,1996:400.0,1997:410.0,1998:410.0,1999:440.0,2000:440.0,2001:450.0,2002:460.0,2003:510.0,2004:610.0,2005:700.0,2006:780.0,2007:910.0,2008:990.0,2009:1110.0,2010:1210.0,2011:1350.0,2012:1460.0,2013:1500.0,2014:1540.0,2015:1580.0,2016:1670.0,2017:1790.0,2018:1970.0,2019:2070.0,2020:1900.0,2021:2170.0,2022:2360.0,2023:2490.0,2024:2550.0,2025:2760.0}
+# official operational thresholds [low, lower-middle, upper-middle], OGHIST 1 July 2026
+TH={1990:[610.0, 2465.0, 7620.0],1991:[635.0, 2555.0, 7910.0],1992:[675.0, 2695.0, 8355.0],1993:[695.0, 2785.0, 8625.0],1994:[725.0, 2895.0, 8955.0],1995:[765.0, 3035.0, 9385.0],1996:[785.0, 3115.0, 9645.0],1997:[785.0, 3125.0, 9655.0],1998:[760.0, 3030.0, 9360.0],1999:[755.0, 2995.0, 9265.0],2000:[755.0, 2995.0, 9265.0],2001:[745.0, 2975.0, 9205.0],2002:[735.0, 2935.0, 9075.0],2003:[765.0, 3035.0, 9385.0],2004:[825.0, 3255.0, 10065.0],2005:[875.0, 3465.0, 10725.0],2006:[905.0, 3595.0, 11115.0],2007:[935.0, 3705.0, 11455.0],2008:[975.0, 3855.0, 11905.0],2009:[995.0, 3945.0, 12195.0],2010:[1005.0, 3975.0, 12275.0],2011:[1025.0, 4035.0, 12475.0],2012:[1035.0, 4085.0, 12615.0],2013:[1045.0, 4125.0, 12745.0],2014:[1045.0, 4125.0, 12735.0],2015:[1025.0, 4035.0, 12475.0],2016:[1005.0, 3955.0, 12235.0],2017:[995.0, 3895.0, 12055.0],2018:[1025.0, 3995.0, 12375.0],2019:[1035.0, 4045.0, 12535.0],2020:[1045.0, 4095.0, 12695.0],2021:[1085.0, 4255.0, 13205.0],2022:[1135.0, 4465.0, 13845.0],2023:[1145.0, 4515.0, 14005.0],2024:[1135.0, 4495.0, 13935.0],2025:[1175.0, 4635.0, 14375.0]}
 DRIFT=0.012440
-A=pd.read_csv('growth_c14p.csv').set_index('name')
-gCN,gIN=float(A.loc['China','gr']),float(A.loc['India','gr'])
-
-df=pd.read_csv(CSV); df=df[df['Country Code'].notna()]
-for c in [c for c in df.columns if c[:4].isdigit()]: df[int(c[:4])]=pd.to_numeric(df[c],errors='coerce')
-g=df.set_index('Country Code')
+# decade-median annual growth from the shared upstream pipeline behind charts 1 and 2
+G_CN=0.0501297896843995
+# decade-median annual growth from the shared upstream pipeline behind charts 1 and 2
+G_IN=0.0644091563708026
+assert round(DRIFT*100,3)==1.244, 'caption states a 1.244 percent threshold drift'
+assert round(G_CN*100,1)==5.0,   'caption states 5.0 percent for China'
+assert round(G_IN*100,1)==6.4,   'caption states 6.4 percent for India'
+gCN,gIN=G_CN,G_IN
 HY=list(range(1990,2026)); PY=list(range(2025,2051))
-cn={y:float(g.loc['CHN',y]) for y in HY}; ind={y:float(g.loc['IND',y]) for y in HY}
+cn=dict(GNI_CN); ind=dict(GNI_IN)
 for y in PY[1:]:
     cn[y]=cn[y-1]*(1+gCN); ind[y]=ind[y-1]*(1+gIN)
 th={y:list(TH[y]) for y in HY}
@@ -42,10 +62,10 @@ for t in (tL,tM,tU):
     ax.plot(YR,t,ls='--',lw=1.5,color='white',alpha=0.85,zorder=2)
 ax.axvline(2025.5,ls=':',lw=1.8,color='white',zorder=3)
 
-ax.plot(HY,[cn[y] for y in HY],color=RED,lw=3.4,zorder=5,solid_capstyle='round',path_effects=PE_W)
-ax.plot(PY,[cn[y] for y in PY],color=RED,lw=3.0,ls=(0,(5,2.6)),zorder=5,path_effects=PE_W)
-ax.plot(HY,[ind[y] for y in HY],color=TEAL,lw=3.4,zorder=5,solid_capstyle='round',path_effects=PE_K)
-ax.plot(PY,[ind[y] for y in PY],color=TEAL,lw=3.0,ls=(0,(5,2.6)),zorder=5,path_effects=PE_K)
+ax.plot(HY,[cn[y] for y in HY],color=LINE_CN,lw=3.4,zorder=5,solid_capstyle='round',path_effects=PE_W)
+ax.plot(PY,[cn[y] for y in PY],color=LINE_CN,lw=3.0,ls=(0,(5,2.6)),zorder=5,path_effects=PE_W)
+ax.plot(HY,[ind[y] for y in HY],color=LINE_IN,lw=3.4,zorder=5,solid_capstyle='round',path_effects=PE_K)
+ax.plot(PY,[ind[y] for y in PY],color=LINE_IN,lw=3.0,ls=(0,(5,2.6)),zorder=5,path_effects=PE_K)
 
 def dot(x,y,col):
     edge = INK if col==PAPER else PAPER
@@ -95,19 +115,19 @@ def place(lab,cands,fs,col,weight='bold'):
     return t,b
 
 JOBS=[
- ('2026',2026,cn[2026],RED,
+ ('2026',2026,cn[2026],LINE_CN,
    [(2024.6,y,'right','center') for y in (21500,24000,19500)]+
    [(2027.8,y,'left','center') for y in (11800,11000)]),
- ('2010',2010,cn[2010],RED,
+ ('2010',2010,cn[2010],LINE_CN,
    [(2008.8,y,'right','center') for y in (6100,6700,5600)]+
    [(2011.8,y,'left','center') for y in (3250,3000)]),
- ('1999',1999,cn[1999],RED,
+ ('1999',1999,cn[1999],LINE_CN,
    [(1997.6,y,'right','center') for y in (1200,1330,1090)]+
    [(2000.9,y,'left','center') for y in (610,560)]),
- ('2036',2036,ind[2036],TEAL,
+ ('2036',2036,ind[2036],LINE_IN,
    [(2037.8,y,'left','center') for y in (4100,3800,4450)]+
    [(2034.2,y,'right','center') for y in (7400,8100)]),
- ('2007',2007,ind[2007],TEAL,
+ ('2007',2007,ind[2007],LINE_IN,
    [(2008.8,y,'left','center') for y in (630,580,690)]+
    [(2005.2,y,'right','center') for y in (630,580)]),
 ]
@@ -116,10 +136,10 @@ for lab,dx,dy,col,cands in JOBS:
     place(lab,cands,13,col)
 
 place('China',[(2043.5,y,'right','center') for y in (44000,48500,40000)]+
-      [(2038,y,'right','center') for y in (37000,41000)],13,RED)
+      [(2038,y,'right','center') for y in (37000,41000)],13,LINE_CN)
 place('India',[(2046.5,y,'right','center') for y in (14600,13600,15600,16600)]+
       [(2043,y,'right','center') for y in (14600,13600,16000)]+
-      [(2049.8,y,'right','center') for y in (17500,16000)],13,TEAL)
+      [(2049.8,y,'right','center') for y in (17500,16000)],13,LINE_IN)
 
 # band labels, outside the axes on the right, two lines each, centred in each band
 BANDLAB=[('HIGH\nINCOME',  np.sqrt(th[2050][2]*YHI)),
@@ -171,8 +191,22 @@ assert wb.x0>0 and wb.x1<1.0, 'watermark off canvas'
 fig.savefig(OUT+FN,dpi=200); plt.close(fig)
 
 # ---- standard title band ----
-FB='/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf'
-FR='/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf'
+# ---- fonts: DejaVu from matplotlib's bundled ttf, system path only as a fallback ----
+import os as _os
+from matplotlib import font_manager as _fm
+def _dejavu(stem):
+    p=_os.path.join(matplotlib.get_data_path(),'fonts','ttf',stem)
+    if _os.path.exists(p): return p
+    try:
+        q=_fm.findfont(_fm.FontProperties(family='DejaVu Sans',
+            weight=('bold' if 'Bold' in stem else 'normal')),fallback_to_default=False)
+        if _os.path.basename(q)==stem and _os.path.exists(q): return q
+    except Exception: pass
+    p=_os.path.join('/usr/share/fonts/truetype/dejavu',stem)
+    if _os.path.exists(p): return p
+    raise FileNotFoundError('DejaVu font not found: '+stem)
+FB=_dejavu('DejaVuSans-Bold.ttf'); FR=_dejavu('DejaVuSans.ttf')
+assert _os.path.exists(FB) and _os.path.exists(FR), 'resolved DejaVu font files must exist'
 title="China and India's climb through the income classification, 1990 to 2050"
 sub="GNI per capita (Atlas method, logs) against World Bank's moving income thresholds"
 im=Image.open(OUT+FN).convert('RGB')
