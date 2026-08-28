@@ -1,22 +1,37 @@
-"""Chart 8: the middle of the classification, in counts and shares.
+# =============================================================================
+# Chart 6: the world has reached Peak Middle Income
+#
+# Provenance, frozen vintage. Nothing is read from disk or the network.
+#   Classifications       : World Bank OGHIST, 1 July 2026, Country Analytical History.
+#   GNI per capita        : World Bank WDI, July 2026 vintage, Atlas method, current US$.
+#   Population            : WDI SP.POP.TOTL to 2025; UN World Population Prospects 2024
+#                           revision, medium variant, rebased to each economy's 2025 level.
+#   Vintage freeze date   : 1 July 2026. The chart is pinned to this vintage; do not swap
+#                           the embedded data for a live API call.
+#
+# Reduction: The script reads three columns of its companion csv at the seven-decade span
+# 1987-2050. Those columns are embedded here as COLS and ROWS; the csv still ships
+# alongside as the published data file.
+#
+# Values from 2026 are a nowcast inherited from the shared upstream projection
+# pipeline (decade-median growth, floored at the threshold drift, capped at the
+# group's 90th percentile) and are embedded here already resolved.
+# =============================================================================
+"""Chart 6: the middle-income world in levels and shares.
 
-Reads chart-8-the-middle-of-the-classification-is-emptying-out.csv and writes the png of the same name.
-Run from inside this folder:  python3 chart-8-the-middle-of-the-classification-is-emptying-out-build.py
+Reads chart-6-the-world-has-reached-peak-middle-income.csv and writes the png of the same name.
+Run from inside this folder:  python3 chart-6-the-world-has-reached-peak-middle-income-build.py
 """
-import csv
 import numpy as np
 import matplotlib; matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
 from PIL import Image, ImageDraw, ImageFont
 
-SRC=("Source: World Bank OGHIST (1 July 2026), Country Analytical History, with WDI GNI per capita, Atlas method; author's calculations."+chr(10))
+SRC=("Source: World Bank OGHIST (1 July 2026), Country Analytical History, with WDI GNI per capita, Atlas method, and population "
+"(SP.POP.TOTL) to 2025; UN World Population Prospects 2024, medium variant, for population from 2026; author's calculations."+chr(10))
 
 # ---------------------------------------------------------------- shared helpers
-def read_chart_csv(path):
-    rows=[r for r in csv.reader(open(path)) if r and not r[0].startswith('#')]
-    hdr=rows[0]
-    return hdr,[dict(zip(hdr,r)) for r in rows[1:]]
 
 def place_marks(fig, ax, YY, series, marks, fontsize=10.5, pad_frac=0.014, align_x=None, override=None, dots=True, dotsize=8.5):
     """Put a value label near its point, clear of every series and every other label."""
@@ -140,8 +155,22 @@ def caption(fig, ax, cap, fs=7.8, gap_lines=2.0):
     print('  caption %d lines'%len(lines))
 
 def title_band(path, title, sub, tf=0.0285, sf=0.0168):
-    FB='/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf'
-    FR='/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf'
+        # ---- fonts: DejaVu from matplotlib's bundled ttf, system path only as a fallback ----
+    import os as _os
+    from matplotlib import font_manager as _fm
+    def _dejavu(stem):
+        p=_os.path.join(matplotlib.get_data_path(),'fonts','ttf',stem)
+        if _os.path.exists(p): return p
+        try:
+            q=_fm.findfont(_fm.FontProperties(family='DejaVu Sans',
+                weight=('bold' if 'Bold' in stem else 'normal')),fallback_to_default=False)
+            if _os.path.basename(q)==stem and _os.path.exists(q): return q
+        except Exception: pass
+        p=_os.path.join('/usr/share/fonts/truetype/dejavu',stem)
+        if _os.path.exists(p): return p
+        raise FileNotFoundError('DejaVu font not found: '+stem)
+    FB=_dejavu('DejaVuSans-Bold.ttf'); FR=_dejavu('DejaVuSans.ttf')
+    assert _os.path.exists(FB) and _os.path.exists(FR), 'resolved DejaVu font files must exist'
     im=Image.open(path).convert('RGB')
     a=np.array(im.convert('L')); rr=np.where((a<250).sum(axis=1)>0)[0]
     im=im.crop((0,0,im.size[0],min(im.size[1],int(rr.max())+13)))
@@ -181,40 +210,46 @@ def draw(ax,YY,S,col,NH):
     ax.plot(YY[:NH],S[:NH],color=col,lw=2.9,zorder=5,solid_capstyle='round')
     ax.plot(YY[NH-1:],S[NH-1:],color=col,lw=2.5,ls=(0,(4.5,2.2)),zorder=5)
 
-CSV='chart-8-the-middle-of-the-classification-is-emptying-out.csv'
-PNG='chart-8-the-middle-of-the-classification-is-emptying-out.png'
-LEVCOL='middle_income_economies'
-SHCOL='middle_income_share_of_classified_percent'
-LEVTTL='Number of economies'
-SHTTL='Percent of all classified economies'
-YMAXL=152
-TICKSL=range(0,131,25)
-FMTL=None
-YMAXS=70
-TICKSS=range(0,61,10)
-VALL=lambda v:'%d'%v
+PNG='chart-6-the-world-has-reached-peak-middle-income.png'
+LEVCOL='middle_income_population_millions'
+SHCOL='middle_income_share_of_world_percent'
+LEVTTL='Billions of people'
+SHTTL='Percent of world population'
+YMAXL=8300
+TICKSL=range(0,7001,1000)
+FMTL=lambda v:'%.0f'%(v/1000) if v else '0'
+YMAXS=122
+TICKSS=range(0,101,20)
+VALL=lambda v:'%.2f bn'%(v/1000)
 VALS=lambda v:'%.0f%%'%v
-PKL=1992
-PKS=1992
-PEAK_LIFT=True
+PKL=2025
+PKS=2016
+PEAK_LIFT=False
 OVR=None
-NOTE=("Note: Counts of economies, not people. Middle income combines the lower-middle and upper-middle groups. Classifications are actual "
-"through 2025 and projected from 2026. Shares are of all economies classified in that year, a total that rises from 166 in 1987 to 218 "
-"from 2025 on as new economies enter, so the counts and the shares carry different information. Projection: GNI per capita grows at each "
-"economy's median annual rate over the decade to 2025, floored at the 1.244 percent threshold drift so that no economy is downgraded, "
-"and capped at the 90th percentile of decade medians within its own 2025 income group. All three thresholds drift up at 1.244 percent a "
-"year, the median annual increase in the published thresholds over the same decade to 2025.")
-TITLE="The middle of the classification is emptying out"
-SUB="Number of lower-middle and upper-middle-income economies combined, and as a percent of all classified economies"
+NOTE=("Note: Middle income combines the lower-middle and upper-middle groups. Classifications are actual through 2025 and projected "
+"from 2026. Shares are of total world population, so they include the small share living in economies the World Bank does not classify. "
+"A group's population changes both because its members grow and because economies cross a threshold, which is why the lines step in the "
+"years when large economies are reclassified. Projection: GNI per capita grows at each economy's median annual rate over the decade to "
+"2025, floored at the 1.244 percent threshold drift so that no economy is downgraded, and capped at the 90th percentile of decade "
+"medians within its own 2025 income group. All three thresholds drift up at 1.244 percent a year, the median annual increase in the "
+"published thresholds over the same decade to 2025.")
+TITLE="The world has reached Peak Middle Income"
+SUB="Population of lower-middle and upper-middle-income countries combined, billions and as a percent of world population"
 
-hdr,rows=read_chart_csv(CSV)
+# ---- embedded data, see the provenance header ----
+COLS=['year', 'middle_income_population_millions', 'middle_income_share_of_world_percent']
+ROWS=[(1987.0,1035.2595,20.5949),(1988.0,1067.7698,20.8675),(1989.0,1097.5137,21.0761),(1990.0,1410.6649,26.6215),(1991.0,1403.8427,26.054),(1992.0,1418.7917,25.9054),(1993.0,1600.1563,28.7567),(1994.0,1577.1306,27.9112),(1995.0,1605.9527,27.9968),(1996.0,1618.6478,27.8007),(1997.0,2879.0806,48.7304),(1998.0,1489.2354,24.8466),(1999.0,2687.5661,44.2174),(2000.0,2718.7111,44.124),(2001.0,2691.1377,43.0945),(2002.0,2762.6603,43.6634),(2003.0,3023.8421,47.1786),(2004.0,3050.6476,46.9883),(2005.0,3108.3866,47.2729),(2006.0,3121.4949,46.8726),(2007.0,4355.8393,64.5879),(2008.0,4775.2051,69.9143),(2009.0,4943.5477,71.4781),(2010.0,5055.0871,72.2067),(2011.0,5123.1897,72.293),(2012.0,5020.2818,69.9546),(2013.0,5098.8554,70.1799),(2014.0,5328.8822,72.467),(2015.0,5611.9303,75.4182),(2016.0,5678.1342,75.4246),(2017.0,5626.4645,73.8984),(2018.0,5760.6948,74.8515),(2019.0,5850.5119,75.2268),(2020.0,5921.1455,75.3915),(2021.0,5926.1297,74.829),(2022.0,6002.2663,75.1359),(2023.0,5896.2036,73.1274),(2024.0,5939.0066,72.9527),(2025.0,6024.1948,73.3279),(2026.0,4541.7748,54.8235),(2027.0,4633.3205,55.4714),(2028.0,4683.1447,55.6191),(2029.0,4763.018,56.1242),(2030.0,4815.0276,56.3011),(2031.0,4866.944,56.4798),(2032.0,4911.4172,56.5758),(2033.0,4939.2446,56.4858),(2034.0,4986.2088,56.6201),(2035.0,5035.9564,56.7896),(2036.0,5085.0895,56.956),(2037.0,5133.5156,57.1188),(2038.0,5142.8893,56.8542),(2039.0,5177.4265,56.8761),(2040.0,5219.4838,56.9866),(2041.0,5441.7872,59.0592),(2042.0,5490.6915,59.2445),(2043.0,5538.1994,59.4209),(2044.0,5525.0659,58.9566),(2045.0,5352.5591,56.8147),(2046.0,5229.2768,55.2239),(2047.0,5274.0687,55.4244),(2048.0,5317.6763,55.6202),(2049.0,5360.6516,55.8174),(2050.0,5402.8864,56.0153)]
+rows=[dict(zip(COLS,r)) for r in ROWS]
 YY=[int(r['year']) for r in rows]
 LEV=[float(r[LEVCOL]) for r in rows]
 SH=[float(r[SHCOL]) for r in rows]
 NH=YY.index(2025)+1
+# ---- the chart's stated numbers must follow from the embedded data ----
+assert YY[0]==1987 and YY[-1]==2050 and len(YY)==64, 'the series runs 1987 to 2050'
+assert PKL==2025 and round(max(LEV)/1000,2)==6.02, 'the levels peak label states 6.02 bn in 2025'
+assert PKS==2016 and round(max(SH))==75, 'the shares peak label states 75 percent in 2016'
 PLABL='peak %d%s'%(PKL,' (nowcast)' if PKL==2025 else '')+chr(10)+VALL(max(LEV))
 PLABS='peak %d'%PKS+chr(10)+VALS(max(SH))
-OVR={'sh':{(AMBERTXT,2050):(2049.0,SH[-1]+3.6,'right','bottom')}}
 plt.rcParams.update({'font.family':'DejaVu Sans','font.size':14,'axes.edgecolor':'#888',
  'axes.linewidth':1.0,'figure.facecolor':'white','xtick.labelsize':12,'ytick.labelsize':12})
 fig,axs=plt.subplots(1,2,figsize=(9.6,6.3),dpi=200)

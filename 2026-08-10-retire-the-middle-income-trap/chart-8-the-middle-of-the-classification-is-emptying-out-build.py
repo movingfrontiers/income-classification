@@ -1,23 +1,34 @@
-"""Chart 7: where people live, by broad income group.
+# =============================================================================
+# Chart 8: the middle of the classification is emptying out
+#
+# Provenance, frozen vintage. Nothing is read from disk or the network.
+#   Classifications       : World Bank OGHIST, 1 July 2026, Country Analytical History.
+#   GNI per capita        : World Bank WDI, July 2026 vintage, Atlas method, current US$.
+#   Vintage freeze date   : 1 July 2026. The chart is pinned to this vintage; do not swap
+#                           the embedded data for a live API call.
+#
+# Reduction: The script reads three columns of its companion csv at the seven-decade span
+# 1987-2050. Those columns are embedded here as COLS and ROWS; the csv still ships
+# alongside as the published data file.
+#
+# Values from 2026 are a nowcast inherited from the shared upstream projection
+# pipeline (decade-median growth, floored at the threshold drift, capped at the
+# group's 90th percentile) and are embedded here already resolved.
+# =============================================================================
+"""Chart 8: the middle of the classification, in counts and shares.
 
-Reads chart-7-where-people-live-by-country-income-group.csv and writes the png of the same name.
-Run from inside this folder:  python3 chart-7-where-people-live-by-country-income-group-build.py
+Reads chart-8-the-middle-of-the-classification-is-emptying-out.csv and writes the png of the same name.
+Run from inside this folder:  python3 chart-8-the-middle-of-the-classification-is-emptying-out-build.py
 """
-import csv
 import numpy as np
 import matplotlib; matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
 from PIL import Image, ImageDraw, ImageFont
 
-SRC=("Source: World Bank OGHIST (1 July 2026), Country Analytical History, with WDI GNI per capita, Atlas method, and population "
-"(SP.POP.TOTL) to 2025; UN World Population Prospects 2024, medium variant, for population from 2026; author's calculations."+chr(10))
+SRC=("Source: World Bank OGHIST (1 July 2026), Country Analytical History, with WDI GNI per capita, Atlas method; author's calculations."+chr(10))
 
 # ---------------------------------------------------------------- shared helpers
-def read_chart_csv(path):
-    rows=[r for r in csv.reader(open(path)) if r and not r[0].startswith('#')]
-    hdr=rows[0]
-    return hdr,[dict(zip(hdr,r)) for r in rows[1:]]
 
 def place_marks(fig, ax, YY, series, marks, fontsize=10.5, pad_frac=0.014, align_x=None, override=None, dots=True, dotsize=8.5):
     """Put a value label near its point, clear of every series and every other label."""
@@ -141,8 +152,22 @@ def caption(fig, ax, cap, fs=7.8, gap_lines=2.0):
     print('  caption %d lines'%len(lines))
 
 def title_band(path, title, sub, tf=0.0285, sf=0.0168):
-    FB='/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf'
-    FR='/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf'
+        # ---- fonts: DejaVu from matplotlib's bundled ttf, system path only as a fallback ----
+    import os as _os
+    from matplotlib import font_manager as _fm
+    def _dejavu(stem):
+        p=_os.path.join(matplotlib.get_data_path(),'fonts','ttf',stem)
+        if _os.path.exists(p): return p
+        try:
+            q=_fm.findfont(_fm.FontProperties(family='DejaVu Sans',
+                weight=('bold' if 'Bold' in stem else 'normal')),fallback_to_default=False)
+            if _os.path.basename(q)==stem and _os.path.exists(q): return q
+        except Exception: pass
+        p=_os.path.join('/usr/share/fonts/truetype/dejavu',stem)
+        if _os.path.exists(p): return p
+        raise FileNotFoundError('DejaVu font not found: '+stem)
+    FB=_dejavu('DejaVuSans-Bold.ttf'); FR=_dejavu('DejaVuSans.ttf')
+    assert _os.path.exists(FB) and _os.path.exists(FR), 'resolved DejaVu font files must exist'
     im=Image.open(path).convert('RGB')
     a=np.array(im.convert('L')); rr=np.where((a<250).sum(axis=1)>0)[0]
     im=im.crop((0,0,im.size[0],min(im.size[1],int(rr.max())+13)))
@@ -182,60 +207,69 @@ def draw(ax,YY,S,col,NH):
     ax.plot(YY[:NH],S[:NH],color=col,lw=2.9,zorder=5,solid_capstyle='round')
     ax.plot(YY[NH-1:],S[NH-1:],color=col,lw=2.5,ls=(0,(4.5,2.2)),zorder=5)
 
-CSV='chart-7-where-people-live-by-country-income-group.csv'
-PNG='chart-7-where-people-live-by-country-income-group.png'
-LEVCOLS={'LIC':'low_income_population_millions','MIC':'middle_income_population_millions','HIC':'high_income_population_millions'}
-SHCOLS={'LIC':'low_income_share_of_world_percent','MIC':'middle_income_share_of_world_percent','HIC':'high_income_share_of_world_percent'}
-LEVTTL='Billions of people'
-SHTTL='Percent of world population'
-YMAXL=8300
-TICKSL=range(0,7001,1000)
-FMTL=lambda v:'%.0f'%(v/1000) if v else '0'
-YMAXS=122
-TICKSS=range(0,101,20)
-VALL=lambda v:'%.2f'%(v/1000)
+PNG='chart-8-the-middle-of-the-classification-is-emptying-out.png'
+LEVCOL='middle_income_economies'
+SHCOL='middle_income_share_of_classified_percent'
+LEVTTL='Number of economies'
+SHTTL='Percent of all classified economies'
+YMAXL=152
+TICKSL=range(0,131,25)
+FMTL=None
+YMAXS=70
+TICKSS=range(0,61,10)
+VALL=lambda v:'%d'%v
 VALS=lambda v:'%.0f%%'%v
-FORCE_BELOW=(('MIC',1987),)
+PKL=1992
+PKS=1992
+PEAK_LIFT=True
 OVR=None
-NOTE=("Note: Middle income combines the lower-middle and upper-middle groups. Classifications are actual through 2025 and projected "
-"from 2026. Shares are of total world population, so they include the small share living in economies the World Bank does not classify. "
-"A group's population changes both because its members grow and because economies cross a threshold, which is why the lines step in the "
-"years when large economies are reclassified. Projection: GNI per capita grows at each economy's median annual rate over the decade to "
-"2025, floored at the 1.244 percent threshold drift so that no economy is downgraded, and capped at the 90th percentile of decade "
-"medians within its own 2025 income group. All three thresholds drift up at 1.244 percent a year, the median annual increase in the "
-"published thresholds over the same decade to 2025.")
-TITLE="Where people live by country income group"
-SUB="Population of each broad income group, billions and as a percent of world population"
+NOTE=("Note: Counts of economies, not people. Middle income combines the lower-middle and upper-middle groups. Classifications are actual "
+"through 2025 and projected from 2026. Shares are of all economies classified in that year, a total that rises from 166 in 1987 to 218 "
+"from 2025 on as new economies enter, so the counts and the shares carry different information. Projection: GNI per capita grows at each "
+"economy's median annual rate over the decade to 2025, floored at the 1.244 percent threshold drift so that no economy is downgraded, "
+"and capped at the 90th percentile of decade medians within its own 2025 income group. All three thresholds drift up at 1.244 percent a "
+"year, the median annual increase in the published thresholds over the same decade to 2025.")
+TITLE="The middle of the classification is emptying out"
+SUB="Number of lower-middle and upper-middle-income economies combined, and as a percent of all classified economies"
 
-hdr,rows=read_chart_csv(CSV)
+# ---- embedded data, see the provenance header ----
+COLS=['year', 'middle_income_economies', 'middle_income_share_of_classified_percent']
+ROWS=[(1987.0,76.0,45.7831),(1988.0,78.0,46.7066),(1989.0,77.0,45.2941),(1990.0,89.0,49.4444),(1991.0,104.0,52.7919),(1992.0,110.0,53.9216),(1993.0,106.0,51.7073),(1994.0,97.0,47.0874),(1995.0,94.0,45.6311),(1996.0,94.0,45.4106),(1997.0,95.0,45.8937),(1998.0,93.0,44.9275),(1999.0,93.0,44.9275),(2000.0,92.0,44.2308),(2001.0,90.0,43.0622),(2002.0,88.0,42.1053),(2003.0,93.0,44.4976),(2004.0,94.0,44.9761),(2005.0,98.0,46.89),(2006.0,96.0,45.7143),(2007.0,95.0,45.2381),(2008.0,101.0,47.8673),(2009.0,104.0,48.5981),(2010.0,110.0,50.9259),(2011.0,108.0,50.2326),(2012.0,103.0,47.907),(2013.0,105.0,48.8372),(2014.0,104.0,48.3721),(2015.0,108.0,49.5413),(2016.0,109.0,50.0),(2017.0,103.0,47.2477),(2018.0,107.0,49.0826),(2019.0,106.0,48.6239),(2020.0,110.0,50.6912),(2021.0,108.0,49.7696),(2022.0,108.0,49.7696),(2023.0,105.0,48.3871),(2024.0,104.0,48.1481),(2025.0,106.0,48.6239),(2026.0,101.0,46.3303),(2027.0,100.0,45.8716),(2028.0,99.0,45.4128),(2029.0,99.0,45.4128),(2030.0,98.0,44.9541),(2031.0,98.0,44.9541),(2032.0,96.0,44.0367),(2033.0,92.0,42.2018),(2034.0,89.0,40.8257),(2035.0,89.0,40.8257),(2036.0,89.0,40.8257),(2037.0,89.0,40.8257),(2038.0,88.0,40.367),(2039.0,87.0,39.9083),(2040.0,86.0,39.4495),(2041.0,87.0,39.9083),(2042.0,87.0,39.9083),(2043.0,86.0,39.4495),(2044.0,83.0,38.0734),(2045.0,82.0,37.6147),(2046.0,80.0,36.6972),(2047.0,80.0,36.6972),(2048.0,79.0,36.2385),(2049.0,78.0,35.7798),(2050.0,78.0,35.7798)]
+rows=[dict(zip(COLS,r)) for r in ROWS]
 YY=[int(r['year']) for r in rows]
-LEV={k:[float(r[c]) for r in rows] for k,c in LEVCOLS.items()}
-SH ={k:[float(r[c]) for r in rows] for k,c in SHCOLS.items()}
+LEV=[float(r[LEVCOL]) for r in rows]
+SH=[float(r[SHCOL]) for r in rows]
 NH=YY.index(2025)+1
-KEYS=('LIC','MIC','HIC')
-COL={'LIC':RED,'MIC':AMBER,'HIC':INDIGO}
-TXT={'LIC':RED,'MIC':AMBERTXT,'HIC':INDIGO}
-NAME={'LIC':'Low income','MIC':'Middle income','HIC':'High income'}
-ALIGN={1987:(1988.6,'left'),2025:(2024.4,'right'),2050:(2049.4,'right')}
+# ---- the chart's stated numbers must follow from the embedded data ----
+assert YY[0]==1987 and YY[-1]==2050 and len(YY)==64, 'the series runs 1987 to 2050'
+assert PKL==1992 and int(max(LEV))==110, 'the counts peak label states 110 in 1992'
+assert PKS==1992 and round(max(SH))==54, 'the shares peak label states 54 percent in 1992'
+PLABL='peak %d%s'%(PKL,' (nowcast)' if PKL==2025 else '')+chr(10)+VALL(max(LEV))
+PLABS='peak %d'%PKS+chr(10)+VALS(max(SH))
+OVR={'sh':{(AMBERTXT,2050):(2049.0,SH[-1]+3.6,'right','bottom')}}
 plt.rcParams.update({'font.family':'DejaVu Sans','font.size':14,'axes.edgecolor':'#888',
  'axes.linewidth':1.0,'figure.facecolor':'white','xtick.labelsize':12,'ytick.labelsize':12})
 fig,axs=plt.subplots(1,2,figsize=(9.6,6.3),dpi=200)
-for ax,(D,ttl,ymax,ticks,fmt,vf,which) in zip(axs,[(LEV,LEVTTL,YMAXL,TICKSL,FMTL,VALL,'lev'),
-                                                   (SH,SHTTL,YMAXS,TICKSS,None,VALS,'sh')]):
+for ax,(S,ttl,ymax,ticks,fmt,vf,pk,plab) in zip(axs,
+        [(LEV,LEVTTL,YMAXL,TICKSL,FMTL,VALL,PKL,PLABL),
+         (SH,SHTTL,YMAXS,TICKSS,None,VALS,PKS,PLABS)]):
     panel(ax,ymax,ticks,ttl,fmt)
-    for k in KEYS: draw(ax,YY,D[k],COL[k],NH)
-    MK=[]
-    for k in KEYS:
-        for yr in (1987,2025,2050):
-            pref='below' if (k,yr) in FORCE_BELOW else 'above'
-            MK.append((yr,vf(D[k][YY.index(yr)]),pref,D[k],TXT[k]))
-    place_marks(fig,ax,YY,[D[k] for k in KEYS],MK,fontsize=10.0,align_x=ALIGN,
-                override=(OVR.get(which) if OVR else None))
+    draw(ax,YY,S,AMBER,NH)
+    ax.plot([pk],[S[YY.index(pk)]],'o',mfc='white',mec=AMBERTXT,mew=2.6,ms=13,zorder=30,clip_on=False)
+    place_marks(fig,ax,YY,[S],[(pk,plab,'above',S,AMBERTXT)],fontsize=10.5,dots=False)
+    if PEAK_LIFT:
+        fig.canvas.draw()
+        _pr=ax.text(0,0,'0',fontsize=10.5); fig.canvas.draw()
+        _bb=_pr.get_window_extent(fig.canvas.get_renderer()); _pr.remove()
+        _inv=ax.transData.inverted()
+        _h=abs(_inv.transform((0,_bb.height))[1]-_inv.transform((0,0))[1])
+        ax.texts[-1].set_y(ax.texts[-1].get_position()[1]+0.5*_h)
+    MK=[(1987,vf(S[YY.index(1987)]),'below',S,AMBERTXT)]
+    if 2025!=pk: MK.append((2025,vf(S[YY.index(2025)]),'above',S,AMBERTXT))
+    MK.append((2050,vf(S[-1]),'above',S,AMBERTXT))
+    place_marks(fig,ax,YY,[S],MK,fontsize=10.5,override=(OVR.get('lev' if S is LEV else 'sh') if OVR else None))
     ax.text(2026.4,ymax*0.955,'projected',fontsize=10.5,color='#777',style='italic',ha='left',va='top')
-fig.legend(handles=[Line2D([],[],color=COL[k],lw=3.0,label=NAME[k]) for k in KEYS],
-           loc='lower center',bbox_to_anchor=(0.5,0.268),ncol=3,frameon=False,fontsize=12,
-           columnspacing=3.0,handlelength=2.2)
-fig.tight_layout(rect=[0,0.340,1,0.985]); fig.subplots_adjust(wspace=0.16)
+fig.tight_layout(rect=[0,0.300,1,0.985]); fig.subplots_adjust(wspace=0.16)
 caption(fig,axs[0],SRC+NOTE)
 fig.savefig(PNG,dpi=200); plt.close(fig)
 title_band(PNG,TITLE,SUB)

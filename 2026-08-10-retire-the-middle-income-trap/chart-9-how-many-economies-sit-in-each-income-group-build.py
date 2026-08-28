@@ -1,9 +1,25 @@
+# =============================================================================
+# Chart 9: how many economies sit in each income group
+#
+# Provenance, frozen vintage. Nothing is read from disk or the network.
+#   Classifications       : World Bank OGHIST, 1 July 2026, Country Analytical History.
+#   GNI per capita        : World Bank WDI, July 2026 vintage, Atlas method, current US$.
+#   Vintage freeze date   : 1 July 2026. The chart is pinned to this vintage; do not swap
+#                           the embedded data for a live API call.
+#
+# Reduction: The script reads six columns of its companion csv at the seven-decade span
+# 1987-2050. Those columns are embedded here as COLS and ROWS; the csv still ships
+# alongside as the published data file.
+#
+# Values from 2026 are a nowcast inherited from the shared upstream projection
+# pipeline (decade-median growth, floored at the threshold drift, capped at the
+# group's 90th percentile) and are embedded here already resolved.
+# =============================================================================
 """Chart 9: how many economies sit in each income group.
 
 Reads chart-9-how-many-economies-sit-in-each-income-group.csv and writes the png of the same name.
 Run from inside this folder:  python3 chart-9-how-many-economies-sit-in-each-income-group-build.py
 """
-import csv
 import numpy as np
 import matplotlib; matplotlib.use('Agg')
 import matplotlib.pyplot as plt
@@ -13,10 +29,6 @@ from PIL import Image, ImageDraw, ImageFont
 SRC=("Source: World Bank OGHIST (1 July 2026), Country Analytical History, with WDI GNI per capita, Atlas method; author's calculations."+chr(10))
 
 # ---------------------------------------------------------------- shared helpers
-def read_chart_csv(path):
-    rows=[r for r in csv.reader(open(path)) if r and not r[0].startswith('#')]
-    hdr=rows[0]
-    return hdr,[dict(zip(hdr,r)) for r in rows[1:]]
 
 def place_marks(fig, ax, YY, series, marks, fontsize=10.5, pad_frac=0.014, align_x=None, override=None, dots=True, dotsize=8.5):
     """Put a value label near its point, clear of every series and every other label."""
@@ -140,8 +152,22 @@ def caption(fig, ax, cap, fs=7.8, gap_lines=2.0):
     print('  caption %d lines'%len(lines))
 
 def title_band(path, title, sub, tf=0.0285, sf=0.0168):
-    FB='/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf'
-    FR='/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf'
+        # ---- fonts: DejaVu from matplotlib's bundled ttf, system path only as a fallback ----
+    import os as _os
+    from matplotlib import font_manager as _fm
+    def _dejavu(stem):
+        p=_os.path.join(matplotlib.get_data_path(),'fonts','ttf',stem)
+        if _os.path.exists(p): return p
+        try:
+            q=_fm.findfont(_fm.FontProperties(family='DejaVu Sans',
+                weight=('bold' if 'Bold' in stem else 'normal')),fallback_to_default=False)
+            if _os.path.basename(q)==stem and _os.path.exists(q): return q
+        except Exception: pass
+        p=_os.path.join('/usr/share/fonts/truetype/dejavu',stem)
+        if _os.path.exists(p): return p
+        raise FileNotFoundError('DejaVu font not found: '+stem)
+    FB=_dejavu('DejaVuSans-Bold.ttf'); FR=_dejavu('DejaVuSans.ttf')
+    assert _os.path.exists(FB) and _os.path.exists(FR), 'resolved DejaVu font files must exist'
     im=Image.open(path).convert('RGB')
     a=np.array(im.convert('L')); rr=np.where((a<250).sum(axis=1)>0)[0]
     im=im.crop((0,0,im.size[0],min(im.size[1],int(rr.max())+13)))
@@ -181,7 +207,6 @@ def draw(ax,YY,S,col,NH):
     ax.plot(YY[:NH],S[:NH],color=col,lw=2.9,zorder=5,solid_capstyle='round')
     ax.plot(YY[NH-1:],S[NH-1:],color=col,lw=2.5,ls=(0,(4.5,2.2)),zorder=5)
 
-CSV='chart-9-how-many-economies-sit-in-each-income-group.csv'
 PNG='chart-9-how-many-economies-sit-in-each-income-group.png'
 LEVCOLS={'LIC':'low_income_economies','MIC':'middle_income_economies','HIC':'high_income_economies'}
 SHCOLS={'LIC':'low_income_share_of_classified_percent','MIC':'middle_income_share_of_classified_percent','HIC':'high_income_share_of_classified_percent'}
@@ -205,12 +230,27 @@ NOTE=("Note: Counts of economies, not people. Middle income combines the lower-m
 TITLE="How many economies sit in each income group"
 SUB="Number of economies in each broad income group, and as a percent of all classified economies"
 
-hdr,rows=read_chart_csv(CSV)
+# ---- embedded data, see the provenance header ----
+COLS=['year', 'low_income_economies', 'middle_income_economies', 'high_income_economies', 'low_income_share_of_classified_percent', 'middle_income_share_of_classified_percent', 'high_income_share_of_classified_percent']
+ROWS=[(1987.0,49.0,76.0,41.0,29.5181,45.7831,24.6988),(1988.0,48.0,78.0,41.0,28.7425,46.7066,24.5509),(1989.0,49.0,77.0,44.0,28.8235,45.2941,25.8824),(1990.0,51.0,89.0,40.0,28.3333,49.4444,22.2222),(1991.0,54.0,104.0,39.0,27.4112,52.7919,19.797),(1992.0,55.0,110.0,39.0,26.9608,53.9216,19.1176),(1993.0,59.0,106.0,40.0,28.7805,51.7073,19.5122),(1994.0,64.0,97.0,45.0,31.068,47.0874,21.8447),(1995.0,63.0,94.0,49.0,30.5825,45.6311,23.7864),(1996.0,63.0,94.0,50.0,30.4348,45.4106,24.1546),(1997.0,61.0,95.0,51.0,29.4686,45.8937,24.6377),(1998.0,63.0,93.0,51.0,30.4348,44.9275,24.6377),(1999.0,64.0,93.0,50.0,30.9179,44.9275,24.1546),(2000.0,63.0,92.0,53.0,30.2885,44.2308,25.4808),(2001.0,66.0,90.0,53.0,31.5789,43.0622,25.3589),(2002.0,64.0,88.0,57.0,30.622,42.1053,27.2727),(2003.0,61.0,93.0,55.0,29.1866,44.4976,26.3158),(2004.0,59.0,94.0,56.0,28.2297,44.9761,26.7943),(2005.0,54.0,98.0,57.0,25.8373,46.89,27.2727),(2006.0,53.0,96.0,61.0,25.2381,45.7143,29.0476),(2007.0,49.0,95.0,66.0,23.3333,45.2381,31.4286),(2008.0,43.0,101.0,67.0,20.3791,47.8673,31.7536),(2009.0,40.0,104.0,70.0,18.6916,48.5981,32.7103),(2010.0,35.0,110.0,71.0,16.2037,50.9259,32.8704),(2011.0,36.0,108.0,71.0,16.7442,50.2326,33.0233),(2012.0,36.0,103.0,76.0,16.7442,47.907,35.3488),(2013.0,34.0,105.0,76.0,15.814,48.8372,35.3488),(2014.0,31.0,104.0,80.0,14.4186,48.3721,37.2093),(2015.0,31.0,108.0,79.0,14.2202,49.5413,36.2385),(2016.0,31.0,109.0,78.0,14.2202,50.0,35.7798),(2017.0,34.0,103.0,81.0,15.5963,47.2477,37.156),(2018.0,31.0,107.0,80.0,14.2202,49.0826,36.6972),(2019.0,29.0,106.0,83.0,13.3028,48.6239,38.0734),(2020.0,27.0,110.0,80.0,12.4424,50.6912,36.8664),(2021.0,28.0,108.0,81.0,12.9032,49.7696,37.3272),(2022.0,26.0,108.0,83.0,11.9816,49.7696,38.2488),(2023.0,26.0,105.0,86.0,11.9816,48.3871,39.6313),(2024.0,25.0,104.0,87.0,11.5741,48.1481,40.2778),(2025.0,25.0,106.0,87.0,11.4679,48.6239,39.9083),(2026.0,24.0,101.0,93.0,11.0092,46.3303,42.6606),(2027.0,21.0,100.0,97.0,9.633,45.8716,44.4954),(2028.0,21.0,99.0,98.0,9.633,45.4128,44.9541),(2029.0,20.0,99.0,99.0,9.1743,45.4128,45.4128),(2030.0,20.0,98.0,100.0,9.1743,44.9541,45.8716),(2031.0,19.0,98.0,101.0,8.7156,44.9541,46.3303),(2032.0,19.0,96.0,103.0,8.7156,44.0367,47.2477),(2033.0,19.0,92.0,107.0,8.7156,42.2018,49.0826),(2034.0,19.0,89.0,110.0,8.7156,40.8257,50.4587),(2035.0,19.0,89.0,110.0,8.7156,40.8257,50.4587),(2036.0,19.0,89.0,110.0,8.7156,40.8257,50.4587),(2037.0,19.0,89.0,110.0,8.7156,40.8257,50.4587),(2038.0,19.0,88.0,111.0,8.7156,40.367,50.9174),(2039.0,18.0,87.0,113.0,8.2569,39.9083,51.8349),(2040.0,18.0,86.0,114.0,8.2569,39.4495,52.2936),(2041.0,17.0,87.0,114.0,7.7982,39.9083,52.2936),(2042.0,17.0,87.0,114.0,7.7982,39.9083,52.2936),(2043.0,17.0,86.0,115.0,7.7982,39.4495,52.7523),(2044.0,16.0,83.0,119.0,7.3394,38.0734,54.5872),(2045.0,16.0,82.0,120.0,7.3394,37.6147,55.0459),(2046.0,16.0,80.0,122.0,7.3394,36.6972,55.9633),(2047.0,16.0,80.0,122.0,7.3394,36.6972,55.9633),(2048.0,16.0,79.0,123.0,7.3394,36.2385,56.422),(2049.0,16.0,78.0,124.0,7.3394,35.7798,56.8807),(2050.0,16.0,78.0,124.0,7.3394,35.7798,56.8807)]
+rows=[dict(zip(COLS,r)) for r in ROWS]
 YY=[int(r['year']) for r in rows]
 LEV={k:[float(r[c]) for r in rows] for k,c in LEVCOLS.items()}
 SH ={k:[float(r[c]) for r in rows] for k,c in SHCOLS.items()}
 NH=YY.index(2025)+1
 KEYS=('LIC','MIC','HIC')
+# ---- the chart's stated numbers must follow from the embedded data ----
+assert YY[0]==1987 and YY[-1]==2050 and len(YY)==64, 'the series runs 1987 to 2050'
+_n87=sum(LEV[k][0] for k in KEYS); _n25=sum(LEV[k][YY.index(2025)] for k in KEYS)
+assert (round(_n87),round(_n25))==(166,218), (
+    'the note states the classified total rises from 166 in 1987 to 218 from 2025 on')
+# the nine labelled values, so a data refresh cannot silently orphan them
+for _y,_lev,_sh in ((1987,(49,76,41),(30,46,25)),
+                    (2025,(25,106,87),(11,49,40)),
+                    (2050,(16,78,124),(7,36,57))):
+    _i=YY.index(_y)
+    assert tuple(int(LEV[k][_i]) for k in KEYS)==_lev, 'count labels at %d'%_y
+    assert tuple(round(SH[k][_i]) for k in KEYS)==_sh, 'share labels at %d'%_y
 COL={'LIC':RED,'MIC':AMBER,'HIC':INDIGO}
 TXT={'LIC':RED,'MIC':AMBERTXT,'HIC':INDIGO}
 NAME={'LIC':'Low income','MIC':'Middle income','HIC':'High income'}

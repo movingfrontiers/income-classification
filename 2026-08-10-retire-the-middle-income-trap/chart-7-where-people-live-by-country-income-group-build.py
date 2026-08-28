@@ -1,9 +1,27 @@
-"""Chart 6: the middle-income world in levels and shares.
+# =============================================================================
+# Chart 7: where people live by country income group
+#
+# Provenance, frozen vintage. Nothing is read from disk or the network.
+#   Classifications       : World Bank OGHIST, 1 July 2026, Country Analytical History.
+#   GNI per capita        : World Bank WDI, July 2026 vintage, Atlas method, current US$.
+#   Population            : WDI SP.POP.TOTL to 2025; UN World Population Prospects 2024
+#                           revision, medium variant, rebased to each economy's 2025 level.
+#   Vintage freeze date   : 1 July 2026. The chart is pinned to this vintage; do not swap
+#                           the embedded data for a live API call.
+#
+# Reduction: The script reads six columns of its companion csv at the seven-decade span
+# 1987-2050. Those columns are embedded here as COLS and ROWS; the csv still ships
+# alongside as the published data file.
+#
+# Values from 2026 are a nowcast inherited from the shared upstream projection
+# pipeline (decade-median growth, floored at the threshold drift, capped at the
+# group's 90th percentile) and are embedded here already resolved.
+# =============================================================================
+"""Chart 7: where people live, by broad income group.
 
-Reads chart-6-the-world-has-reached-peak-middle-income.csv and writes the png of the same name.
-Run from inside this folder:  python3 chart-6-the-world-has-reached-peak-middle-income-build.py
+Reads chart-7-where-people-live-by-country-income-group.csv and writes the png of the same name.
+Run from inside this folder:  python3 chart-7-where-people-live-by-country-income-group-build.py
 """
-import csv
 import numpy as np
 import matplotlib; matplotlib.use('Agg')
 import matplotlib.pyplot as plt
@@ -14,10 +32,6 @@ SRC=("Source: World Bank OGHIST (1 July 2026), Country Analytical History, with 
 "(SP.POP.TOTL) to 2025; UN World Population Prospects 2024, medium variant, for population from 2026; author's calculations."+chr(10))
 
 # ---------------------------------------------------------------- shared helpers
-def read_chart_csv(path):
-    rows=[r for r in csv.reader(open(path)) if r and not r[0].startswith('#')]
-    hdr=rows[0]
-    return hdr,[dict(zip(hdr,r)) for r in rows[1:]]
 
 def place_marks(fig, ax, YY, series, marks, fontsize=10.5, pad_frac=0.014, align_x=None, override=None, dots=True, dotsize=8.5):
     """Put a value label near its point, clear of every series and every other label."""
@@ -141,8 +155,22 @@ def caption(fig, ax, cap, fs=7.8, gap_lines=2.0):
     print('  caption %d lines'%len(lines))
 
 def title_band(path, title, sub, tf=0.0285, sf=0.0168):
-    FB='/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf'
-    FR='/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf'
+        # ---- fonts: DejaVu from matplotlib's bundled ttf, system path only as a fallback ----
+    import os as _os
+    from matplotlib import font_manager as _fm
+    def _dejavu(stem):
+        p=_os.path.join(matplotlib.get_data_path(),'fonts','ttf',stem)
+        if _os.path.exists(p): return p
+        try:
+            q=_fm.findfont(_fm.FontProperties(family='DejaVu Sans',
+                weight=('bold' if 'Bold' in stem else 'normal')),fallback_to_default=False)
+            if _os.path.basename(q)==stem and _os.path.exists(q): return q
+        except Exception: pass
+        p=_os.path.join('/usr/share/fonts/truetype/dejavu',stem)
+        if _os.path.exists(p): return p
+        raise FileNotFoundError('DejaVu font not found: '+stem)
+    FB=_dejavu('DejaVuSans-Bold.ttf'); FR=_dejavu('DejaVuSans.ttf')
+    assert _os.path.exists(FB) and _os.path.exists(FR), 'resolved DejaVu font files must exist'
     im=Image.open(path).convert('RGB')
     a=np.array(im.convert('L')); rr=np.where((a<250).sum(axis=1)>0)[0]
     im=im.crop((0,0,im.size[0],min(im.size[1],int(rr.max())+13)))
@@ -182,10 +210,9 @@ def draw(ax,YY,S,col,NH):
     ax.plot(YY[:NH],S[:NH],color=col,lw=2.9,zorder=5,solid_capstyle='round')
     ax.plot(YY[NH-1:],S[NH-1:],color=col,lw=2.5,ls=(0,(4.5,2.2)),zorder=5)
 
-CSV='chart-6-the-world-has-reached-peak-middle-income.csv'
-PNG='chart-6-the-world-has-reached-peak-middle-income.png'
-LEVCOL='middle_income_population_millions'
-SHCOL='middle_income_share_of_world_percent'
+PNG='chart-7-where-people-live-by-country-income-group.png'
+LEVCOLS={'LIC':'low_income_population_millions','MIC':'middle_income_population_millions','HIC':'high_income_population_millions'}
+SHCOLS={'LIC':'low_income_share_of_world_percent','MIC':'middle_income_share_of_world_percent','HIC':'high_income_share_of_world_percent'}
 LEVTTL='Billions of people'
 SHTTL='Percent of world population'
 YMAXL=8300
@@ -193,11 +220,9 @@ TICKSL=range(0,7001,1000)
 FMTL=lambda v:'%.0f'%(v/1000) if v else '0'
 YMAXS=122
 TICKSS=range(0,101,20)
-VALL=lambda v:'%.2f bn'%(v/1000)
+VALL=lambda v:'%.2f'%(v/1000)
 VALS=lambda v:'%.0f%%'%v
-PKL=2025
-PKS=2016
-PEAK_LIFT=False
+FORCE_BELOW=(('MIC',1987),)
 OVR=None
 NOTE=("Note: Middle income combines the lower-middle and upper-middle groups. Classifications are actual through 2025 and projected "
 "from 2026. Shares are of total world population, so they include the small share living in economies the World Bank does not classify. "
@@ -206,39 +231,53 @@ NOTE=("Note: Middle income combines the lower-middle and upper-middle groups. Cl
 "2025, floored at the 1.244 percent threshold drift so that no economy is downgraded, and capped at the 90th percentile of decade "
 "medians within its own 2025 income group. All three thresholds drift up at 1.244 percent a year, the median annual increase in the "
 "published thresholds over the same decade to 2025.")
-TITLE="The world has reached Peak Middle Income"
-SUB="Population of lower-middle and upper-middle-income countries combined, billions and as a percent of world population"
+TITLE="Where people live by country income group"
+SUB="Population of each broad income group, billions and as a percent of world population"
 
-hdr,rows=read_chart_csv(CSV)
+# ---- embedded data, see the provenance header ----
+COLS=['year', 'low_income_population_millions', 'middle_income_population_millions', 'high_income_population_millions', 'low_income_share_of_world_percent', 'middle_income_share_of_world_percent', 'high_income_share_of_world_percent']
+ROWS=[(1987.0,2819.4159,1035.2595,790.3853,56.088,20.5949,15.7235),(1988.0,2878.3002,1067.7698,796.3097,56.2509,20.8675,15.5624),(1989.0,2937.9627,1097.5137,806.4874,56.4192,21.0761,15.4874),(1990.0,3060.5979,1410.6649,818.2718,57.7584,26.6215,15.4421),(1991.0,3150.1672,1403.8427,824.806,58.4641,26.054,15.3076),(1992.0,3218.3618,1418.7917,832.0809,58.7633,25.9054,15.1928),(1993.0,3117.8674,1600.1563,838.721,56.0318,28.7567,15.0728),(1994.0,3212.3239,1577.1306,855.4875,56.8499,27.9112,15.1399),(1995.0,3217.6488,1605.9527,906.837,56.0937,27.9968,15.809),(1996.0,3273.8263,1618.6478,923.967,56.2288,27.8007,15.8694),(1997.0,2090.6813,2879.0806,932.3635,35.3862,48.7304,15.7809),(1998.0,3605.6373,1489.2354,892.6044,60.1568,24.8466,14.8923),(1999.0,2486.1913,2687.5661,898.001,40.9043,44.2174,14.7744),(2000.0,2531.6182,2718.7111,904.713,41.0875,44.124,14.6833),(2001.0,2589.3058,2691.1377,958.2301,41.4638,43.0945,15.3446),(2002.0,2588.7434,2762.6603,969.4191,40.9147,43.6634,15.3215),(2003.0,2403.3472,3023.8421,975.5104,37.4975,47.1786,15.2201),(2004.0,2432.9227,3050.6476,1001.7991,37.4737,46.9883,15.4304),(2005.0,2450.2981,3108.3866,1009.384,37.2646,47.2729,15.3509),(2006.0,2497.8011,3121.4949,1030.7008,37.5071,46.8726,15.4771),(2007.0,1319.4251,4355.8393,1058.848,19.5643,64.5879,15.7005),(2008.0,973.8079,4775.2051,1072.4992,14.2576,69.9143,15.7026),(2009.0,842.8781,4943.5477,1120.8237,12.1871,71.4781,16.2058),(2010.0,811.8037,5055.0871,1124.4787,11.5958,72.2067,16.062),(2011.0,833.2917,5123.1897,1130.2449,11.7585,72.293,15.9488),(2012.0,859.0928,5020.2818,1297.1191,11.9709,69.9546,18.0746),(2013.0,861.5238,5098.8554,1305.0236,11.8579,70.1799,17.9622),(2014.0,628.944,5328.8822,1395.7103,8.553,72.467,18.9801),(2015.0,644.1899,5611.9303,1185.0322,8.6572,75.4182,15.9255),(2016.0,661.2457,5678.1342,1188.9194,8.7836,75.4246,15.7928),(2017.0,740.1474,5626.4645,1247.2573,9.7211,73.8984,16.3816),(2018.0,728.0297,5760.6948,1207.5202,9.4596,74.8515,15.6899),(2019.0,693.5447,5850.5119,1233.1889,8.9177,75.2268,15.8565),(2020.0,692.0503,5921.1455,1212.303,8.8116,75.3915,15.4358),(2021.0,730.5871,5926.1297,1234.6841,9.2251,74.829,15.5903),(2022.0,715.8447,6002.2663,1242.4601,8.9609,75.1359,15.553),(2023.0,735.3859,5896.2036,1402.9769,9.1206,73.1274,17.4004),(2024.0,623.4994,5939.0066,1417.7273,7.6589,72.9527,17.4149),(2025.0,767.4902,6024.1948,1423.506,9.3421,73.3279,17.3272),(2026.0,773.2554,4541.7748,2969.2487,9.3339,54.8235,35.8416),(2027.0,594.7385,4633.3205,3124.6485,7.1204,55.4714,37.4091),(2028.0,610.143,4683.1447,3126.9591,7.2463,55.6191,37.1372),(2029.0,597.4698,4763.018,3126.4412,7.0402,56.1242,36.8399),(2030.0,612.3741,4815.0276,3125.3825,7.1604,56.3011,36.5445),(2031.0,624.1723,4866.944,3126.6783,7.2434,56.4798,36.2844),(2032.0,639.1533,4911.4172,3131.3527,7.3626,56.5758,36.0708),(2033.0,654.1901,4939.2446,3151.728,7.4814,56.4858,36.0436),(2034.0,669.2723,4986.2088,3152.0405,7.5998,56.6201,35.7925),(2035.0,684.387,5035.9564,3148.6284,7.7177,56.7896,35.5066),(2036.0,699.5691,5085.0895,3144.8162,7.8356,56.956,35.2238),(2037.0,714.7955,5133.5156,3140.659,7.9533,57.1188,34.945),(2038.0,730.0111,5142.8893,3174.5213,8.0702,56.8542,35.0941),(2039.0,713.6106,5177.4265,3213.7734,7.8393,56.8761,35.3046),(2040.0,728.4328,5219.4838,3213.1912,7.9531,56.9866,35.0818),(2041.0,566.3453,5441.7872,3208.1042,6.1465,59.0592,34.8172),(2042.0,576.7684,5490.6915,3202.6452,6.2233,59.2445,34.5565),(2043.0,587.1574,5538.1994,3197.341,6.2998,59.4209,34.3051),(2044.0,589.3596,5525.0659,3259.5295,6.2889,58.9566,34.7816),(2045.0,599.6398,5352.5591,3471.5699,6.3649,56.8147,36.849),(2046.0,609.9399,5229.2768,3632.8537,6.4413,55.2239,38.3648),(2047.0,620.2163,5274.0687,3624.4966,6.5178,55.4244,38.0893),(2048.0,630.4639,5317.6763,3615.6913,6.5943,55.6202,37.8183),(2049.0,640.7719,5360.6516,3605.7603,6.672,55.8174,37.5448),(2050.0,651.0394,5402.8864,3594.8811,6.7498,56.0153,37.2705)]
+rows=[dict(zip(COLS,r)) for r in ROWS]
 YY=[int(r['year']) for r in rows]
-LEV=[float(r[LEVCOL]) for r in rows]
-SH=[float(r[SHCOL]) for r in rows]
+LEV={k:[float(r[c]) for r in rows] for k,c in LEVCOLS.items()}
+SH ={k:[float(r[c]) for r in rows] for k,c in SHCOLS.items()}
 NH=YY.index(2025)+1
-PLABL='peak %d%s'%(PKL,' (nowcast)' if PKL==2025 else '')+chr(10)+VALL(max(LEV))
-PLABS='peak %d'%PKS+chr(10)+VALS(max(SH))
+KEYS=('LIC','MIC','HIC')
+# ---- the chart's stated numbers must follow from the embedded data ----
+assert YY[0]==1987 and YY[-1]==2050 and len(YY)==64, 'the series runs 1987 to 2050'
+# the nine labelled values, so a data refresh cannot silently orphan them
+for _y,_lev,_sh in ((1987,(2.82,1.04,0.79),(56,21,16)),
+                    (2025,(0.77,6.02,1.42),(9,73,17)),
+                    (2050,(0.65,5.40,3.59),(7,56,37))):
+    _i=YY.index(_y)
+    assert tuple(round(LEV[k][_i]/1000,2) for k in KEYS)==_lev, 'levels labels at %d'%_y
+    assert tuple(round(SH[k][_i]) for k in KEYS)==_sh, 'shares labels at %d'%_y
+# the three groups do not sum to world population: economies the World Bank does not
+# classify sit outside them, 7.6 percent of people in 1987 and almost none by 2025
+assert round(100-sum(SH[k][0] for k in KEYS),1)==7.6, 'unclassified residual in 1987'
+COL={'LIC':RED,'MIC':AMBER,'HIC':INDIGO}
+TXT={'LIC':RED,'MIC':AMBERTXT,'HIC':INDIGO}
+NAME={'LIC':'Low income','MIC':'Middle income','HIC':'High income'}
+ALIGN={1987:(1988.6,'left'),2025:(2024.4,'right'),2050:(2049.4,'right')}
 plt.rcParams.update({'font.family':'DejaVu Sans','font.size':14,'axes.edgecolor':'#888',
  'axes.linewidth':1.0,'figure.facecolor':'white','xtick.labelsize':12,'ytick.labelsize':12})
 fig,axs=plt.subplots(1,2,figsize=(9.6,6.3),dpi=200)
-for ax,(S,ttl,ymax,ticks,fmt,vf,pk,plab) in zip(axs,
-        [(LEV,LEVTTL,YMAXL,TICKSL,FMTL,VALL,PKL,PLABL),
-         (SH,SHTTL,YMAXS,TICKSS,None,VALS,PKS,PLABS)]):
+for ax,(D,ttl,ymax,ticks,fmt,vf,which) in zip(axs,[(LEV,LEVTTL,YMAXL,TICKSL,FMTL,VALL,'lev'),
+                                                   (SH,SHTTL,YMAXS,TICKSS,None,VALS,'sh')]):
     panel(ax,ymax,ticks,ttl,fmt)
-    draw(ax,YY,S,AMBER,NH)
-    ax.plot([pk],[S[YY.index(pk)]],'o',mfc='white',mec=AMBERTXT,mew=2.6,ms=13,zorder=30,clip_on=False)
-    place_marks(fig,ax,YY,[S],[(pk,plab,'above',S,AMBERTXT)],fontsize=10.5,dots=False)
-    if PEAK_LIFT:
-        fig.canvas.draw()
-        _pr=ax.text(0,0,'0',fontsize=10.5); fig.canvas.draw()
-        _bb=_pr.get_window_extent(fig.canvas.get_renderer()); _pr.remove()
-        _inv=ax.transData.inverted()
-        _h=abs(_inv.transform((0,_bb.height))[1]-_inv.transform((0,0))[1])
-        ax.texts[-1].set_y(ax.texts[-1].get_position()[1]+0.5*_h)
-    MK=[(1987,vf(S[YY.index(1987)]),'below',S,AMBERTXT)]
-    if 2025!=pk: MK.append((2025,vf(S[YY.index(2025)]),'above',S,AMBERTXT))
-    MK.append((2050,vf(S[-1]),'above',S,AMBERTXT))
-    place_marks(fig,ax,YY,[S],MK,fontsize=10.5,override=(OVR.get('lev' if S is LEV else 'sh') if OVR else None))
+    for k in KEYS: draw(ax,YY,D[k],COL[k],NH)
+    MK=[]
+    for k in KEYS:
+        for yr in (1987,2025,2050):
+            pref='below' if (k,yr) in FORCE_BELOW else 'above'
+            MK.append((yr,vf(D[k][YY.index(yr)]),pref,D[k],TXT[k]))
+    place_marks(fig,ax,YY,[D[k] for k in KEYS],MK,fontsize=10.0,align_x=ALIGN,
+                override=(OVR.get(which) if OVR else None))
     ax.text(2026.4,ymax*0.955,'projected',fontsize=10.5,color='#777',style='italic',ha='left',va='top')
-fig.tight_layout(rect=[0,0.300,1,0.985]); fig.subplots_adjust(wspace=0.16)
+fig.legend(handles=[Line2D([],[],color=COL[k],lw=3.0,label=NAME[k]) for k in KEYS],
+           loc='lower center',bbox_to_anchor=(0.5,0.268),ncol=3,frameon=False,fontsize=12,
+           columnspacing=3.0,handlelength=2.2)
+fig.tight_layout(rect=[0,0.340,1,0.985]); fig.subplots_adjust(wspace=0.16)
 caption(fig,axs[0],SRC+NOTE)
 fig.savefig(PNG,dpi=200); plt.close(fig)
 title_band(PNG,TITLE,SUB)

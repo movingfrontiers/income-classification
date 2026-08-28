@@ -1,7 +1,20 @@
 """Reconstruction of the published figure from its csv. Typography follows the
 Moving Frontiers chart conventions; pixel-level details may differ marginally
 from the original render."""
-import pandas as pd, numpy as np, os
+import pandas as pd, numpy as np
+
+# ---------------------------------------------------------------------------
+# PROVENANCE (data frozen; do not replace with live calls or downloads)
+#
+# Source: Media Cloud story index, January 2016 to July 2026, retrieved August 2026.
+# Frozen: 28 August 2026, from the csv published in this repository.
+# The output is pinned to this vintage; a script that re-fetches upstream
+# data is not reproducible, merely convenient.
+# Derived: the per-1,000 shares are as plotted in the published figure, at the
+# Derived:         stated decimal precision; they are derived from a Media Cloud query
+# Derived:         run in August 2026 and cannot be looked up at that exact precision.
+# ---------------------------------------------------------------------------
+
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
@@ -12,7 +25,6 @@ plt.rcParams.update({'font.family':'DejaVu Sans',
     'axes.edgecolor':'#888','axes.linewidth':1.0,
     'figure.facecolor':'white','axes.facecolor':'white'})
 RED,TEAL,INDIGO = '#C62828','#00897B','#283593'
-HERE = os.path.dirname(os.path.abspath(__file__))
 
 def caption(fig, lines, FIGH, y0=0.010):
     FS=7.0
@@ -27,8 +39,15 @@ def caption(fig, lines, FIGH, y0=0.010):
 
 def title_band(OUT,title,subtitle):
     from PIL import Image, ImageDraw, ImageFont
-    FB='/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf'
-    FR='/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf'
+    import matplotlib, os
+    def _resolve_font(name):
+        cands=['/usr/share/fonts/truetype/dejavu/'+name,
+               os.path.join(matplotlib.get_data_path(),'fonts','ttf',name)]
+        for p in cands:
+            if os.path.exists(p): return p
+        raise FileNotFoundError(name)
+    FB=_resolve_font('DejaVuSans-Bold.ttf')
+    FR=_resolve_font('DejaVuSans.ttf')
     im=Image.open(OUT).convert('RGB'); W,H=im.size
     fs=int(W*0.031); font=ImageFont.truetype(FB,fs)
     fss=int(W*0.0225); fonts=ImageFont.truetype(FR,fss)
@@ -51,7 +70,23 @@ def title_band(OUT,title,subtitle):
     canvas.save(OUT,optimize=True)
     print('done',canvas.size)
 
-d = pd.read_csv(os.path.join(HERE,'chart-2-how-major-news-outlets-label-countries.csv'))
+# EMBEDDED DATA, exact copy of the csv (csv row order preserved)
+ROWS = [
+    ('The Japan Times (Japan)', 6.13, 4.08, 0.43),
+    ('Al Jazeera (Qatar)', 5.3, 2.64, 0.73),
+    ('The New York Times (US)', 3.98, 2.03, 0.56),
+    ('The Guardian (UK)', 3.88, 2.06, 0.45),
+    ('Punch (Nigeria)', 3.35, 2.96, 0.28),
+    ('South China Morning Post (China)', 3.28, 1.96, 0.23),
+    ('TASS (Russia)', 3.27, 1.09, 0.04),
+    ('CNN (US)', 1.86, 1.08, 0.51),
+    ('The Star (Malaysia)', 1.39, 0.71, 0.15),
+    ('The Times of India (India)', 1.04, 0.9, 0.1),
+    ('BBC (UK)', 0.63, 0.34, 0.09),
+    ('Fox News (US)', 0.6, 0.35, 0.07),
+]
+COLS = ['outlet', 'stories_per_1000_developing_country', 'stories_per_1000_developed_country', 'stories_per_1000_high_income_country']
+d = pd.DataFrame(ROWS, columns=COLS)
 FIGW,FIGH = 8, 8.4
 fig,ax = plt.subplots(figsize=(FIGW,FIGH))
 n=len(d); h=0.24
@@ -77,6 +112,9 @@ cap=[
  '1,000 stories the outlet published over the whole period. The Japan Times, Punch and the Russian News Agency (TASS) have gaps in daily',
  'index coverage, covering 87, 93 and 93 percent of days, but results do not change significantly compared to a',
  'balanced sample.']
+_cap=' '.join(cap)
+assert 'twelve outlets' in _cap and len(d)==12, \
+    'caption says twelve outlets; embedded table must have 12 rows'
 cap_top=caption(fig,cap,FIGH)
 fig.tight_layout(rect=[0.02,cap_top+0.03,0.98,0.985])
 OUT='chart-2-how-major-news-outlets-label-countries.png'
