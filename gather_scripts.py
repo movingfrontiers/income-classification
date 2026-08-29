@@ -8,7 +8,7 @@ def gather_all_scripts():
     
     count = 0
     for py_file in root_dir.rglob('*.py'):
-        if target_dir in py_file.parents or py_file.name == 'gather-scripts.py':
+        if target_dir in py_file.parents or py_file.name == 'gather_scripts.py':
             continue
             
         dest_file = target_dir / py_file.name
