@@ -1,21 +1,17 @@
-
-"""
-chart-3-fdi-shortfall-by-period.py
-The Sri Lanka FDI gap before and after the civil war.
-
-Self-contained: the data are embedded below, so this script runs on its own.
-The companion file chart-3-fdi-shortfall-by-period.csv holds the same numbers.
-
-Each estimate is the coefficient on a Sri Lanka indicator in a pooled OLS
-regression of net FDI inflows (% of GDP) on log GDP, log GDP per capita, GDP
-growth, trade openness, inflation, log surrounding market potential and
-government effectiveness, with year fixed effects and standard errors clustered
-by country. The three rows are separate regressions on different sub-periods.
-
-Run:  python chart-3-fdi-shortfall-by-period.py
-Out:  chart-3-fdi-shortfall-by-period.png
-"""
-import numpy as np
+# =============================================================================
+# Chart 8: agriculture's share of employment and of value added, Sri Lanka and peers
+#
+# Provenance, frozen vintage. Nothing is read from disk or the network.
+#   Employment  : World Bank WDI, SL.AGR.EMPL.ZS, 2025, modelled ILO estimate.
+#   Value added : World Bank WDI, NV.AGR.TOTL.ZS, 2024.
+#   Vintage freeze date: 1 September 2026.
+#
+# Country sets are the two panels of the technical efficiency chart, unchanged.
+# Aspect: two-panel categorical figure, so the 1.253:1 plot-area ratio is not
+# pinned; the canvas is sized to the panels (chart standard, section 4).
+# =============================================================================
+"""Agriculture's share of employment and of value added, two panels."""
+import pandas as pd, numpy as np
 
 # -- Moving Frontiers chart template (embedded so each script is self-contained) --
 import matplotlib; matplotlib.use("Agg")
@@ -399,66 +395,129 @@ def style_ax(ax):
     ax.spines["right"].set_visible(False)
 
 
-# ── data: label, point estimate, 95% CI low, 95% CI high, N ──
-ROWS = [
-    ("Full period\n1996-2024", -1.847, -2.247, -1.448, 3097),
-    ("War period\n1996-2009",  -2.270, -2.838, -1.702, 1268),
-    ("Post-war\n2010-2024",    -1.058, -1.713, -0.402, 1829),
-]
-COLORS = [C_BLUE, C_RED, C_GOLD]
 
-TITLE    = "The FDI gap shrank by half after the war"
-SUBTITLE = "Conditional FDI shortfall, percentage points of GDP"
-SOURCE   = ("World Bank World Development Indicators and Worldwide Governance Indicators; "
-            "CEPII GeoDist; UCDP/PRIO Armed Conflict Dataset v26.1; author's calculations.")
-NOTE     = ("Coefficient on a Sri Lanka indicator in pooled OLS regressions of net FDI inflows "
-            "(percent of GDP) on log GDP, log GDP per capita, GDP growth, trade openness, inflation, "
-            "log surrounding market potential and government effectiveness, with year fixed effects "
-            "and standard errors clustered by country (95 percent confidence intervals shown). War "
-            "period restricted to 1996-2009; post-war to 2010-2024. All three estimates are "
-            "significant at the 1 percent level. Adding conflict controls to the post-war sample "
-            "leaves the -1.06 estimate unchanged.")
+OUT = "chart-8-agriculture-peers.png"
+CSV = "chart-8-agriculture-peers.csv"
 
-OUT = "chart-3-fdi-shortfall-by-period.png"
+# employment share 2025 (SL.AGR.EMPL.ZS); value added share 2024 (NV.AGR.TOTL.ZS)
+EMP = {
+    "Costa Rica": 11.49, "Dominican Rep.": 7.01, "Peru": 23.13, "Ghana": 34.57,
+    "Senegal": 29.58, "Guatemala": 29.05, "Philippines": 20.49, "Côte d'Ivoire": 45.37,
+    "Paraguay": 15.97, "El Salvador": 13.85, "Bolivia": 24.71, "Sri Lanka": 25.86,
+    "Kenya": 45.79, "Ecuador": 32.48, "Cambodia": 33.40, "China": 21.68,
+    "Indonesia": 27.30, "India": 41.63, "Vietnam": 25.04, "Malaysia": 9.18,
+    "Thailand": 28.56, "Bangladesh": 44.26, "Pakistan": 36.23, "Korea, Rep.": 5.10,
+    "Nepal": 22.91,
+}
+VAL = {
+    "Costa Rica": 3.43, "Dominican Rep.": 4.45, "Peru": 7.47, "Ghana": 20.58,
+    "Senegal": 15.57, "Guatemala": 9.66, "Philippines": 9.09, "Côte d'Ivoire": 15.86,
+    "Paraguay": 11.25, "El Salvador": 4.51, "Bolivia": 8.83, "Sri Lanka": 8.37,
+    "Kenya": 22.44, "Ecuador": 9.24, "Cambodia": 16.58, "China": 6.80,
+    "Indonesia": 12.61, "India": 17.57, "Vietnam": 12.03, "Malaysia": 8.13,
+    "Thailand": 8.89, "Bangladesh": 11.16, "Pakistan": 23.73, "Korea, Rep.": 1.46,
+    "Nepal": 21.67,
+}
 
-# ── build ──
-# Aspect: this is a categorical chart of three rows, so the 1.253:1 plot-area ratio
-# is not pinned; the canvas is sized to the rows instead (chart standard, section 4).
-fig, ax = plt.subplots(figsize=(8, 5.6), dpi=DPI)
-ypos = np.arange(len(ROWS))[::-1]
-ax.axvline(0, color="#888888", lw=1.0, ls="--")
+STRUCTURAL = ["Costa Rica", "Dominican Rep.", "Peru", "Ghana", "Senegal", "Guatemala",
+              "Philippines", "Côte d'Ivoire", "Paraguay", "El Salvador", "Bolivia",
+              "Sri Lanka", "Kenya", "Ecuador"]
+REGIONAL = ["Cambodia", "China", "Indonesia", "India", "Vietnam", "Philippines",
+            "Malaysia", "Thailand", "Bangladesh", "Sri Lanka", "Pakistan",
+            "Korea, Rep.", "Nepal"]
 
-# the post-war interval reaches furthest right, so its count sits on the left
-N_LEFT = {"Post-war\n2010-2024"}
 
-for (label, coef, lo, hi, n), y, col in zip(ROWS, ypos, COLORS):
-    ax.plot([lo, hi], [y, y], color=col, lw=4, solid_capstyle="round")
-    ax.plot(coef, y, "o", color=col, ms=12)
-    ax.text(coef, y + 0.26, f"{coef:+.2f} pp", ha="center", fontsize=12.5,
-            color="#222222", fontweight="bold")
-    if label in N_LEFT:
-        ax.text(lo - 0.15, y, f"n={n:,}", va="center", ha="right",
-                fontsize=10.5, color="#888888")
-    else:
-        ax.text(hi + 0.15, y, f"n={n:,}", va="center", ha="left",
-                fontsize=10.5, color="#888888")
+def frame(names, panel):
+    d = pd.DataFrame({"economy": names})
+    d["employment"] = d.economy.map(EMP)
+    d["value_added"] = d.economy.map(VAL)
+    d["gap_pp"] = (d.employment - d.value_added).round(2)
+    d["panel"] = panel
+    return d.sort_values("employment")
 
-ax.set_yticks(ypos)
-ax.set_yticklabels([r[0] for r in ROWS])
-ax.set_xlabel("Sri Lanka dummy, percentage points of GDP")
-ax.set_xlim(-3.4, 0.2)
-ax.set_ylim(-0.55, 2.75)
-style_ax(ax)
 
-lay = caption_layout(fig, SOURCE, NOTE)
+S = frame(STRUCTURAL, "structural peers")
+R = frame(REGIONAL, "regional comparators")
+pd.concat([S, R]).sort_values(["panel", "employment"], ascending=[True, False]).to_csv(
+    CSV, index=False)
+
+# ---- the title's stated numbers must follow from the embedded data ----
+assert round(EMP["Sri Lanka"] / 25) == 1, "title states a quarter of workers"
+assert 24.0 <= EMP["Sri Lanka"] <= 26.0, "title states a quarter of workers"
+assert 7.7 <= VAL["Sri Lanka"] <= 8.7, "title states a twelfth of output"
+assert "Philippines" in STRUCTURAL and "Philippines" in REGIONAL, \
+    "note states the Philippines appears in both panels"
+
+fig, axes = plt.subplots(1, 2, figsize=(11, 6.6), dpi=DPI)
+
+for ax, d, ttl in ((axes[0], S, "Structural peers"),
+                   (axes[1], R, "Regional comparators")):
+    y = np.arange(len(d))
+    ax.hlines(y, d.value_added, d.employment, color=C_CONNECT, lw=2.4, zorder=2)
+    ax.scatter(d.value_added, y, s=78, color=C_BLUE, zorder=3,
+               label="Share of value added")
+    ax.scatter(d.employment, y, s=78, color=C_RED, zorder=4,
+               label="Share of employment")
+    ax.set_yticks(y)
+    ax.set_yticklabels(d.economy)
+    for lbl in ax.get_yticklabels():
+        if lbl.get_text() == "Sri Lanka":
+            lbl.set_fontweight("bold")
+    ax.set_xlim(0, 50)
+    ax.set_xticks([0, 10, 20, 30, 40, 50])
+    ax.set_ylim(-0.8, len(d) - 0.2)
+    ax.set_xlabel("Percent")
+    ax.set_title(ttl, fontsize=14, fontweight="bold", color="#333333", pad=10)
+    style_ax(ax)
+    ax.spines["left"].set_visible(False)
+    ax.tick_params(axis="y", length=0)
+    ax.grid(axis="x", color=C_GRID, lw=0.8, zorder=0)
+    ax.set_axisbelow(True)
+
+leg = fig.legend(*axes[0].get_legend_handles_labels(), loc="lower center",
+                 bbox_to_anchor=(0.5, 0.055), ncol=2, frameon=False,
+                 scatterpoints=1, handletextpad=0.35, columnspacing=2.4)
+
+SOURCE = ("World Bank World Development Indicators, series SL.AGR.EMPL.ZS for 2025 and "
+          "NV.AGR.TOTL.ZS for 2024. Employment shares are modelled estimates produced by the "
+          "International Labour Organization.")
+NOTE = ("Each line runs from agriculture's share of value added to its share of employment, so its "
+        "length measures the distance between what the sector produces and how many people it "
+        "occupies. Economies are ordered by agriculture's share of employment. Structural peers are the economies closest to Sri Lanka on the characteristics that drive foreign investment, namely economic size, income per head, governance quality, trade openness and access to surrounding markets; they are not chosen for geography or for any similarity in their farm sectors. Regional comparators are the economies that arise most often in policy discussion. The Philippines meets both definitions and appears in both panels. The two series carry different vintages because value added for 2025 is not yet published for every economy shown.")
+CLOSERS = ("Employment covers formal and informal work alike, including own account farmers and "
+           "unpaid family workers.",)
+
+lay = caption_layout(fig, SOURCE, NOTE, closers=CLOSERS)
+
+
+LEG_OFF = 0.045
 
 
 def apply(bottom):
-    fig.subplots_adjust(left=0.175, right=0.985, top=0.975, bottom=bottom + 0.085)
+    fig.subplots_adjust(left=0.145, right=0.99, top=0.925, bottom=bottom + 0.165,
+                        wspace=0.44)
+    leg.set_bbox_to_anchor((0.5, bottom + LEG_OFF), transform=fig.transFigure)
 
 
-place_caption_snapped(fig, lay, [ax.xaxis.label], apply)
+LEG_GAP_PX = 30
+Hpx = fig.get_figheight() * fig.dpi
+drawn = None
+for _ in range(8):
+    if drawn:
+        for a in drawn:
+            a.remove()
+    drawn = place_caption_snapped(fig, lay, [leg.get_texts()[0], leg.get_texts()[1]], apply)
+    n = _blank_rows_above(fig, leg.get_texts()[0])
+    if n == LEG_GAP_PX:
+        break
+    LEG_OFF += (n - LEG_GAP_PX) / Hpx
+else:
+    raise AssertionError(f"legend gap settled at {n}px, expected {LEG_GAP_PX}")
+
 fig.savefig(OUT, dpi=DPI, facecolor="white")
 plt.close(fig)
-add_title_band(OUT, TITLE, SUBTITLE)
-print("wrote", OUT)
+
+add_title_band(OUT,
+               "Agriculture represents a quarter of Sri Lanka's workers and a twelfth of its output",
+               "Agriculture's share of employment and of value added, percent")
+print("saved", OUT, "and", CSV)

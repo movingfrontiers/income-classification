@@ -17,15 +17,6 @@
 # drift, capped at the group's 90th percentile, frozen classes where fewer than
 # eight of ten annual rates exist) and are embedded here already resolved.
 #
-# The script calls pop_at() and cls_at() only at the seven STAGES years, so the
-# three source pickles reduce without loss to one stage-year table. DATA below is
-# that table: {economy: {year: (income group or None, population in millions)}}.
-# Full float precision is preserved because the ribbon geometry depends on the
-# exact values, not the rounded labels.
-#
-# This table is intentionally duplicated in the companion chart script so that
-# each file stays single-file self-sufficient. The two copies are generated from
-# the same extraction and are identical.
 # =============================================================================
 import numpy as np
 import matplotlib

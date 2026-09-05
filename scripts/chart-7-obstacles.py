@@ -1,21 +1,9 @@
-
 """
-chart-3-fdi-shortfall-by-period.py
-The Sri Lanka FDI gap before and after the civil war.
-
-Self-contained: the data are embedded below, so this script runs on its own.
-The companion file chart-3-fdi-shortfall-by-period.csv holds the same numbers.
-
-Each estimate is the coefficient on a Sri Lanka indicator in a pooled OLS
-regression of net FDI inflows (% of GDP) on log GDP, log GDP per capita, GDP
-growth, trade openness, inflation, log surrounding market potential and
-government effectiveness, with year fixed effects and standard errors clustered
-by country. The three rows are separate regressions on different sub-periods.
-
-Run:  python chart-3-fdi-shortfall-by-period.py
-Out:  chart-3-fdi-shortfall-by-period.png
+Chart 7. Enterprise Survey obstacles, Sri Lanka 2011 vs 2025.
+Built with the Moving Frontiers chart template. Writes the chart PNG and a CSV
+of the plotted series.
 """
-import numpy as np
+import pandas as pd, numpy as np
 
 # -- Moving Frontiers chart template (embedded so each script is self-contained) --
 import matplotlib; matplotlib.use("Agg")
@@ -399,66 +387,91 @@ def style_ax(ax):
     ax.spines["right"].set_visible(False)
 
 
-# ── data: label, point estimate, 95% CI low, 95% CI high, N ──
-ROWS = [
-    ("Full period\n1996-2024", -1.847, -2.247, -1.448, 3097),
-    ("War period\n1996-2009",  -2.270, -2.838, -1.702, 1268),
-    ("Post-war\n2010-2024",    -1.058, -1.713, -0.402, 1829),
-]
-COLORS = [C_BLUE, C_RED, C_GOLD]
 
-TITLE    = "The FDI gap shrank by half after the war"
-SUBTITLE = "Conditional FDI shortfall, percentage points of GDP"
-SOURCE   = ("World Bank World Development Indicators and Worldwide Governance Indicators; "
-            "CEPII GeoDist; UCDP/PRIO Armed Conflict Dataset v26.1; author's calculations.")
-NOTE     = ("Coefficient on a Sri Lanka indicator in pooled OLS regressions of net FDI inflows "
-            "(percent of GDP) on log GDP, log GDP per capita, GDP growth, trade openness, inflation, "
-            "log surrounding market potential and government effectiveness, with year fixed effects "
-            "and standard errors clustered by country (95 percent confidence intervals shown). War "
-            "period restricted to 1996-2009; post-war to 2010-2024. All three estimates are "
-            "significant at the 1 percent level. Adding conflict controls to the post-war sample "
-            "leaves the -1.06 estimate unchanged.")
+OUT = "chart-7-obstacles.png"
+CSV = "chart-7-obstacles.csv"
 
-OUT = "chart-3-fdi-shortfall-by-period.png"
+P = {2011: "/mnt/user-data/uploads/SriLanka-2011-full-data-.dta",
+     2025: "/mnt/user-data/uploads/SriLanka-2025-full-data.dta"}
+D = {y: pd.read_stata(p, convert_categoricals=False).query("wstrict == wstrict")
+     for y, p in P.items()}
 
-# ── build ──
-# Aspect: this is a categorical chart of three rows, so the 1.253:1 plot-area ratio
-# is not pinned; the canvas is sized to the rows instead (chart standard, section 4).
-fig, ax = plt.subplots(figsize=(8, 5.6), dpi=DPI)
-ypos = np.arange(len(ROWS))[::-1]
-ax.axvline(0, color="#888888", lw=1.0, ls="--")
+OBS = {"j30c": "Licensing and permits", "j30b": "Tax administration", "j30a": "Tax rates",
+       "k30": "Access to finance", "d30b": "Customs and trade", "e30": "Informal competition",
+       "l30b": "Inadequate skills", "l30a": "Labor regulations", "j30f": "Corruption",
+       "c30a": "Electricity", "j30e": "Political instability", "i30": "Crime and disorder",
+       "g30a": "Access to land", "d30a": "Transport", "h30": "Courts"}
 
-# the post-war interval reaches furthest right, so its count sits on the left
-N_LEFT = {"Post-war\n2010-2024"}
 
-for (label, coef, lo, hi, n), y, col in zip(ROWS, ypos, COLORS):
-    ax.plot([lo, hi], [y, y], color=col, lw=4, solid_capstyle="round")
-    ax.plot(coef, y, "o", color=col, ms=12)
-    ax.text(coef, y + 0.26, f"{coef:+.2f} pp", ha="center", fontsize=12.5,
-            color="#222222", fontweight="bold")
-    if label in N_LEFT:
-        ax.text(lo - 0.15, y, f"n={n:,}", va="center", ha="right",
-                fontsize=10.5, color="#888888")
-    else:
-        ax.text(hi + 0.15, y, f"n={n:,}", va="center", ha="left",
-                fontsize=10.5, color="#888888")
+def major(y):
+    d = D[y]
+    out = {}
+    for v, name in OBS.items():
+        if v not in d.columns:
+            continue
+        s = d[d[v].between(0, 4)]
+        if len(s):
+            out[name] = 100 * s.loc[s[v] >= 3, "wstrict"].sum() / s.wstrict.sum()
+    return pd.Series(out)
 
-ax.set_yticks(ypos)
-ax.set_yticklabels([r[0] for r in ROWS])
-ax.set_xlabel("Sri Lanka dummy, percentage points of GDP")
-ax.set_xlim(-3.4, 0.2)
-ax.set_ylim(-0.55, 2.75)
+
+t = pd.DataFrame({2011: major(2011), 2025: major(2025)}).dropna().sort_values(2025)
+
+csv = t.round(1).sort_values(2025, ascending=False)
+csv.index.name = "obstacle"
+csv.columns = ["share_2011", "share_2025"]
+csv["change"] = (csv.share_2025 - csv.share_2011).round(1)
+csv.to_csv(CSV)
+
+fig = plt.figure(figsize=(8, 8), dpi=DPI)
+ax = fig.add_subplot(111)
+y = np.arange(len(t))
+
+ax.hlines(y, t[2011], t[2025], color="#d5d5d5", lw=2.4, zorder=2)
+ax.scatter(t[2011], y, s=95, color=C_BLUE, zorder=3, label="2011")
+ax.scatter(t[2025], y, s=95, color=C_RED, zorder=4, label="2025")
+
+ax.set_yticks(y)
+ax.set_yticklabels(t.index)
+ax.set_xlim(0, 52)
+ax.set_xticks([0, 10, 20, 30, 40, 50])
+ax.set_ylim(-0.8, len(t) - 0.2)
+ax.set_xlabel("Percent of firms reporting a major or very severe obstacle")
 style_ax(ax)
+ax.spines["left"].set_visible(False)
+ax.tick_params(axis="y", length=0)
+ax.grid(axis="x", color="#ededed", lw=0.8, zorder=0)
+ax.set_axisbelow(True)
 
-lay = caption_layout(fig, SOURCE, NOTE)
+leg = ax.legend(loc="upper center", bbox_to_anchor=(0.5, -0.085), ncol=2,
+                frameon=False, scatterpoints=1, handletextpad=0.35,
+                columnspacing=2.0)
+
+SOURCE = ("World Bank Enterprise Surveys, Sri Lanka 2011 and 2025 rounds, author's "
+          "calculations from firm level microdata weighted by strict eligibility weights.")
+NOTE = ("Firms rate each item on a five point scale running from no obstacle to very severe "
+        "obstacle, and the chart shows the share choosing major or very severe. The 2011 round "
+        "covers 610 firms and the 2025 round 607, both drawn from the formal non-agricultural "
+        "private sector. The two rounds are fourteen years apart and are separated by the "
+        "aftermath of the war, the pandemic and the sovereign default, so they are better read "
+        "as two snapshots than as a trend.")
+CLOSERS = ("Establishments that considered Sri Lanka and located elsewhere are outside the "
+           "sampling frame.",)
+
+lay = caption_layout(fig, SOURCE, NOTE, closers=CLOSERS)
 
 
 def apply(bottom):
-    fig.subplots_adjust(left=0.175, right=0.985, top=0.975, bottom=bottom + 0.085)
+    fig.subplots_adjust(left=0.262, right=0.985, top=0.985, bottom=bottom)
 
 
-place_caption_snapped(fig, lay, [ax.xaxis.label], apply)
+anchor = [leg.get_texts()[0], leg.get_texts()[1], ax.xaxis.label]
+place_caption_snapped(fig, lay, anchor, apply)
+
 fig.savefig(OUT, dpi=DPI, facecolor="white")
 plt.close(fig)
-add_title_band(OUT, TITLE, SUBTITLE)
-print("wrote", OUT)
+
+add_title_band(OUT,
+               "Enterprise surveys suggest increasing obstacles to doing business",
+               "Obstacles reported by firms in Sri Lanka, 2011 and 2025")
+print("saved", OUT, "and", CSV)
